@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xceptance</groupId>
+    <artifactId>posters-simple-loadtest-suite</artifactId>
+    <version>0.1</version>
+    <packaging>jar</packaging>
+
+    <name>Posters Simple Load Test Suite</name>
+    <description>A simple load test suite for Posters to demo XLT features and functionalities.</description>
+    <url>https://github.com/Xceptance/posters-simple-loadtest-suite</url>
+    <inceptionYear>2014</inceptionYear>
+
+    <organization>
+        <name>Xceptance Software Technologies GmbH</name>
+        <url>https://www.xceptance.com/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <name>Xceptance Dev Team</name>
+            <id>xceptance</id>
+            <email>xlt.dev@xceptance.com</email>
+            <organization>Xceptance Software Technologies GmbH</organization>
+            <organizationUrl>http://www.xceptance.com/</organizationUrl>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+
+    <licenses>
+        <license>
+            <name>Apache-2.0</name>
+            <comments>Apache License, Version 2.0</comments>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/Xceptance/posters-simple-loadtest-suite</url>
+        <connection>scm:git:https://github.com/Xceptance/posters-simple-loadtest-suite</connection>
+        <developerConnection>scm:git:https://github.com/Xceptance/posters-simple-loadtest-suite</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/Xceptance/posters-simple-loadtest-suite/issues</url>
+    </issueManagement>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>xc-nexus</id>
+            <url>https://lab.xceptance.de/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.xceptance</groupId>
+            <artifactId>xlt</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+    </dependencies>
+
+</project>
