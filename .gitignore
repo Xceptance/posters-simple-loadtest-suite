@@ -1,6 +1,8 @@
 /results/
 /classes/
 /target/
+/.gradle/
+/build/
 bin/
 
 .idea/
