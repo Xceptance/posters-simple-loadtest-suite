@@ -97,9 +97,9 @@ public class Login extends AbstractHtmlPageAction
 
         // Check that it's the homepage by looking for the Intro Quote.
         final HtmlElement blogNameElement = page.getHtmlElementById("intro");
-        Assert.assertNotNull("Title not found", blogNameElement);
+        Assert.assertNotNull("Quote not found", blogNameElement);
 
-        // Check the title.
-        Assert.assertEquals("Title does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asText());
+        // Check the quote.
+        Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asText());
     }
 }

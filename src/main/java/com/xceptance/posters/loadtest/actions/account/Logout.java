@@ -40,10 +40,10 @@ public class Logout extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the customer is logged in.
-        Assert.assertTrue("No customer is logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToAccountOverview']"));
+        Assert.assertTrue("No customer is logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='btn btn-primary form-control goToAccountOverview dropdownusermenu']"));
 
         // Remember logout link.
-        logoutLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('userMenu')//a[@class='goToLogout']");
+        logoutLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('userMenu')//a[@class='btn btn-primary form-control goToLogout dropdownusermenu']");
     }
 
     @Override
@@ -67,13 +67,13 @@ public class Logout extends AbstractHtmlPageAction
         HeaderValidator.getInstance().validate(page);
 
         // Check that no customer is logged in.
-        Assert.assertTrue("A customer is still logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToLogin']"));
+        Assert.assertTrue("A customer is still logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='btn btn-primary form-control goToLogin dropdownusermenu']"));
 
         // Check that it's the home page.
-        final HtmlElement blogNameElement = page.getHtmlElementById("titleIndex");
-        Assert.assertNotNull("Title not found", blogNameElement);
+        final HtmlElement blogNameElement = page.getHtmlElementById("intro");
+        Assert.assertNotNull("Quote not found", blogNameElement);
 
         // Check the title.
-        Assert.assertEquals("Title does not match", "Check out our new panorama posters", blogNameElement.asText());
+        Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asText());
     }
 }

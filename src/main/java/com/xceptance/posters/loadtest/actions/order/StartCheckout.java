@@ -38,9 +38,9 @@ public class StartCheckout extends AbstractHtmlPageAction
         // Get the result of the previous action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
-
+      //ul[@id='miniCartMenu']//div[@class='cartMiniHeader']//span[@class='value font-bold']
         // Check that the cart is not empty.
-        final boolean cartIsEmpty = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('miniCartMenu')//div[@class='cartMiniProductCounter']/span").asText()
+        final boolean cartIsEmpty = HtmlPageUtils.findSingleHtmlElementByXPath(page, "//ul[@id='miniCartMenu']//div[@class='cartMiniHeader']//span[@class='value font-bold']").asText()
                                                  .matches(".*: 0.*");
         Assert.assertFalse("Cart must not be empty for checkout.", cartIsEmpty);
 
