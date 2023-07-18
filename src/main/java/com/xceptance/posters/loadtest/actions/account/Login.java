@@ -93,13 +93,13 @@ public class Login extends AbstractHtmlPageAction
         HeaderValidator.getInstance().validate(page);
 
         // Check that the customer is logged in.
-        Assert.assertTrue("Customer is not logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToAccountOverview']"));
+        Assert.assertTrue("Customer is not logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='btn btn-primary form-control goToAccountOverview dropdownusermenu']"));
 
-        // Check that it's the homepage.
-        final HtmlElement blogNameElement = page.getHtmlElementById("titleIndex");
+        // Check that it's the homepage by looking for the Intro Quote.
+        final HtmlElement blogNameElement = page.getHtmlElementById("intro");
         Assert.assertNotNull("Title not found", blogNameElement);
 
         // Check the title.
-        Assert.assertEquals("Title does not match", "Check out our new panorama posters", blogNameElement.asText());
+        Assert.assertEquals("Title does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asText());
     }
 }

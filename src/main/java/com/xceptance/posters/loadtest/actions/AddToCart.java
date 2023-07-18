@@ -75,7 +75,7 @@ public class AddToCart extends AbstractHtmlPageAction
         size = option.getTextContent().trim();
 
         // Get the product ID. This is also needed for the AJAX calls.
-        productId = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('addToCartForm')/div[@class='row']")
+        productId = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('addToCartForm')/div[@class='colorlib-product']")
                                  .getAttribute("id");
 
         // Assert the presence of the add to cart button (even though we do not use
@@ -102,7 +102,7 @@ public class AddToCart extends AbstractHtmlPageAction
 
         
         // Get JSON object from response.
-        final JSONObject updatePriceJsonResponse = new JSONObject(updatePriceResponse.getContentAsString());
+        final JSONObject updatePriceJsonResponse = new JSONObject("{"+updatePriceResponse.getContentAsString()+"}");
 
         // Get the new price from JSON object.
         final String newPrice = updatePriceJsonResponse.getString("newPrice");

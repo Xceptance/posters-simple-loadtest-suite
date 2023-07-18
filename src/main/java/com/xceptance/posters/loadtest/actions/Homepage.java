@@ -107,13 +107,13 @@ public class Homepage extends AbstractHtmlPageAction
         NavBarValidator.getInstance().validate(page);
 
         // Get the homepage title.
-        final HtmlElement titleElement = page.getHtmlElementById("titleIndex");
-        Assert.assertNotNull("Title not found", titleElement);
+        final HtmlElement titleElement = page.getHtmlElementById("colorlib-intro");
+        Assert.assertNotNull("Intro not found", titleElement);
 
         // Get the content form the element.
         final String text = titleElement.asText();
 
         // Make sure we have the correct title.
-        Assert.assertEquals("Title does not match", "Check out our new panorama posters", text);
+        Assert.assertEquals("Title does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", text);
     }
 }

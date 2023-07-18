@@ -38,7 +38,7 @@ public class SelectCategory extends AbstractHtmlPageAction
     {
         // Get all drop down item links and select one randomly.
         categoryLink = HtmlPageUtils.findHtmlElementsAndPickOne(getPreviousAction().getHtmlPage(),
-                                                                "id('categoryMenu')//ul[@class='dropdown-menu']/li/a");
+                                                                "id('categoryMenu')//ul[@class='dropdown dropdown-menu']/li/a");
     }
 
     @Override
@@ -69,6 +69,6 @@ public class SelectCategory extends AbstractHtmlPageAction
         Assert.assertTrue("Product over view element is bot present", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')/div/ul/li/div[@class='thumbnail']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')/div/div/div/div/div[@class='thumbnail']");
     }
 }

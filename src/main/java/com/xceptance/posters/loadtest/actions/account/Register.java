@@ -104,6 +104,6 @@ public class Register extends AbstractHtmlPageAction
         Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
 
         // Check that the customer is not logged in after registration.
-        Assert.assertTrue("Customer is logged in after registration.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToLogin']"));
+        Assert.assertTrue("Customer is logged in after registration.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='btn btn-primary form-control goToLogin dropdownusermenu']"));
     }
 }
