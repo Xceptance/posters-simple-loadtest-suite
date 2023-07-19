@@ -3,6 +3,8 @@ package com.xceptance.posters.loadtest.actions.order;
 import com.xceptance.posters.loadtest.validators.CheckoutHeaderValidator;
 import org.junit.Assert;
 
+import com.gargoylesoftware.htmlunit.html.DomNode;
+import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
@@ -38,10 +40,17 @@ public class StartCheckout extends AbstractHtmlPageAction
         // Get the result of the previous action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
-      //ul[@id='miniCartMenu']//div[@class='cartMiniHeader']//span[@class='value font-bold']
+        
+        //The item quantity in mini cart selector 
+        String itemQuantity = "#miniCartMenu .font-bold";
+        
+        //List of all occurrences for the selector
+        DomNodeList<DomNode> foundElements = page.querySelectorAll(itemQuantity);
+        
+        final HtmlElement cartItemQuantity = (HtmlElement) foundElements.get(0);
+        
         // Check that the cart is not empty.
-        final boolean cartIsEmpty = HtmlPageUtils.findSingleHtmlElementByXPath(page, "//ul[@id='miniCartMenu']//div[@class='cartMiniHeader']//span[@class='value font-bold']").asText()
-                                                 .matches(".*: 0.*");
+        final boolean cartIsEmpty = cartItemQuantity.asText().matches(".*: 0.*");
         Assert.assertFalse("Cart must not be empty for checkout.", cartIsEmpty);
 
         // Check that the checkout link is available.

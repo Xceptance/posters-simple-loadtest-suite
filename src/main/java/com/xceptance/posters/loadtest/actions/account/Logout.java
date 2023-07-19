@@ -3,6 +3,8 @@ package com.xceptance.posters.loadtest.actions.account;
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import org.junit.Assert;
 
+import com.gargoylesoftware.htmlunit.html.DomNode;
+import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
@@ -39,11 +41,19 @@ public class Logout extends AbstractHtmlPageAction
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
-        // Check that the customer is logged in.
-        Assert.assertTrue("No customer is logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='btn btn-primary form-control goToAccountOverview dropdownusermenu']"));
+        String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
 
+        //List of all occurrences for the selector
+        DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
+        
+        //Making sure that there is exactly one occurrence for our specified selector
+        Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
+
+        // Check that the customer is logged in.
+        Assert.assertTrue("Customer is not logged in.", !foundElements.isEmpty());
+        
         // Remember logout link.
-        logoutLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('userMenu')//a[@class='btn btn-primary form-control goToLogout dropdownusermenu']");
+        logoutLink = (HtmlElement) page.querySelectorAll("#btnCartOverviewForm .goToLogout").get(0);
     }
 
     @Override

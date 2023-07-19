@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.junit.Assert;
 
+import com.gargoylesoftware.htmlunit.html.DomNode;
+import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
@@ -41,8 +43,7 @@ public class NavBarValidator
             final HtmlElement htmlElement = iterator.next();
             // relative xpath to address the first sibling after the top
             // category that is a drop down item
-            Assert.assertTrue("Top category is not followed by a level-1 category.",
-                              HtmlPageUtils.isElementPresent(htmlElement, "id('categoryMenu')/ul/li/ul[@class='dropdown dropdown-menu']"));
+            Assert.assertTrue("Top category is not followed by a level-1 category.",!page.querySelectorAll("#categoryMenu .dropdown-menu").isEmpty());
         }
 
     }
