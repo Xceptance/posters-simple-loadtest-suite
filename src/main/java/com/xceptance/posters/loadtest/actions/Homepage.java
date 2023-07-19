@@ -107,11 +107,11 @@ public class Homepage extends AbstractHtmlPageAction
         NavBarValidator.getInstance().validate(page);
 
         // Get the homepage intro quote.
-        final HtmlElement titleElement = page.getHtmlElementById("colorlib-intro");
-        Assert.assertNotNull("Intro quote not found", titleElement);
+        final HtmlElement introElement = page.getHtmlElementById("colorlib-intro");
+        Assert.assertNotNull("Intro quote not found", introElement);
 
         // Get the content form the element.
-        final String text = titleElement.asText();
+        final String text = introElement.asText();
 
         // Make sure we have the correct intro quote.
         Assert.assertEquals("Intro quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", text);

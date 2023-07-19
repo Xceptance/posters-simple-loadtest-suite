@@ -47,6 +47,9 @@ public class StartCheckout extends AbstractHtmlPageAction
         //List of all occurrences for the selector
         DomNodeList<DomNode> foundElements = page.querySelectorAll(itemQuantity);
         
+        //Making sure that there is exactly one occurrence for our specified selector
+        Assert.assertEquals("No or too many elements found for Selector: " + itemQuantity + " -", 1, foundElements.size());
+        
         final HtmlElement cartItemQuantity = (HtmlElement) foundElements.get(0);
         
         // Check that the cart is not empty.

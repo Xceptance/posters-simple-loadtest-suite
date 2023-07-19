@@ -41,10 +41,10 @@ public class Logout extends AbstractHtmlPageAction
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
-        String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
+        final String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
 
         //List of all occurrences for the selector
-        DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
+        final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
@@ -52,8 +52,16 @@ public class Logout extends AbstractHtmlPageAction
         // Check that the customer is logged in.
         Assert.assertTrue("Customer is not logged in.", !foundElements.isEmpty());
         
+        final String logoutLinkSelector = "#btnCartOverviewForm .goToLogout";
+
+        //Making sure that there is exactly one occurrence for our specified selector
+        Assert.assertEquals("No or too many elements found for Selector: " + logoutLinkSelector + " -", 1, page.querySelectorAll(logoutLinkSelector).size());
+        
+        //Making sure that there is exactly one occurrence for our specified selector
+        Assert.assertTrue("Customer is not logged in.", !page.querySelectorAll(logoutLinkSelector).isEmpty());
+
         // Remember logout link.
-        logoutLink = (HtmlElement) page.querySelectorAll("#btnCartOverviewForm .goToLogout").get(0);
+        logoutLink = (HtmlElement) page.querySelectorAll(logoutLinkSelector).get(0);
     }
 
     @Override
@@ -76,14 +84,25 @@ public class Logout extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
+        
+
+        //The sign in selector 
+        String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
+        
+        //List of all occurrences for the selector
+        DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);
+        
+        //Making sure that there is exactly one occurrence for our specified selector
+        Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());
+
         // Check that no customer is logged in.
-        Assert.assertTrue("A customer is still logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='btn btn-primary form-control goToLogin dropdownusermenu']"));
+        Assert.assertTrue("A customer is already logged in.", !foundElements.isEmpty());
 
         // Check that it's the home page.
         final HtmlElement blogNameElement = page.getHtmlElementById("intro");
         Assert.assertNotNull("Quote not found", blogNameElement);
 
-        // Check the title.
+        // Check the intro quote.
         Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asText());
     }
 }
