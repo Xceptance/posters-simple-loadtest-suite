@@ -42,10 +42,10 @@ public class GoToSignIn extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
         
         //The sign in selector 
-        String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
+        final String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
         
         //List of all occurrences for the selector
-        DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);
+        final DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());

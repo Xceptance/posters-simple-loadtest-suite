@@ -84,8 +84,6 @@ public class Logout extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        
-
         //The sign in selector 
         String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
         

@@ -106,10 +106,10 @@ public class Register extends AbstractHtmlPageAction
         Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
         
         //The log in selector 
-        String logInButtonSelector = "#btnCartOverviewForm .goToLogin";
+        final String logInButtonSelector = "#btnCartOverviewForm .goToLogin";
         
         //List of all occurrences for the selector
-        DomNodeList<DomNode> foundElements = page.querySelectorAll(logInButtonSelector);
+        final DomNodeList<DomNode> foundElements = page.querySelectorAll(logInButtonSelector);
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + logInButtonSelector + " -", 1, foundElements.size());

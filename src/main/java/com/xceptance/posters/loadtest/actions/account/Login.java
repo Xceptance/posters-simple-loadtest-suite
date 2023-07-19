@@ -94,10 +94,10 @@ public class Login extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
+        final String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
 
         //List of all occurrences for the selector
-        DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
+        final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
