@@ -48,17 +48,11 @@ public class Logout extends AbstractHtmlPageAction
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
-
-        // Check that the customer is logged in.
-        Assert.assertTrue("Customer is not logged in.", !foundElements.isEmpty());
         
         final String logoutLinkSelector = "#btnCartOverviewForm .goToLogout";
 
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + logoutLinkSelector + " -", 1, page.querySelectorAll(logoutLinkSelector).size());
-        
-        //Making sure that there is exactly one occurrence for our specified selector
-        Assert.assertTrue("Customer is not logged in.", !page.querySelectorAll(logoutLinkSelector).isEmpty());
 
         // Remember logout link.
         logoutLink = (HtmlElement) page.querySelectorAll(logoutLinkSelector).get(0);
@@ -92,9 +86,6 @@ public class Logout extends AbstractHtmlPageAction
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());
-
-        // Check that no customer is logged in.
-        Assert.assertTrue("A customer is already logged in.", !foundElements.isEmpty());
 
         // Check that it's the home page.
         final HtmlElement blogNameElement = page.getHtmlElementById("intro");

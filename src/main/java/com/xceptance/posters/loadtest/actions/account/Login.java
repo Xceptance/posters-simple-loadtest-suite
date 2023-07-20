@@ -102,9 +102,6 @@ public class Login extends AbstractHtmlPageAction
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
 
-        // Check that the customer is logged in.
-        Assert.assertTrue("Customer is not logged in.", !foundElements.isEmpty());
-
         // Check that it's the homepage by looking for the Intro Quote.
         final HtmlElement blogNameElement = page.getHtmlElementById("intro");
         Assert.assertNotNull("Quote not found", blogNameElement);

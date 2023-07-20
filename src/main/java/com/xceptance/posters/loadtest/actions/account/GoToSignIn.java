@@ -50,9 +50,6 @@ public class GoToSignIn extends AbstractHtmlPageAction
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());
 
-        // Check that no customer is logged in.
-        Assert.assertTrue("A customer is already logged in.", !foundElements.isEmpty());
-
         // Remember the sign in button.
         signInButton = (HtmlElement) foundElements.get(0);
        
