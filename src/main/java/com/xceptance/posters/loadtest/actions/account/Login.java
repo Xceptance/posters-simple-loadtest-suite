@@ -4,6 +4,8 @@ import com.xceptance.posters.loadtest.util.Account;
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import org.junit.Assert;
 
+import com.gargoylesoftware.htmlunit.html.DomNode;
+import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -92,14 +94,19 @@ public class Login extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        // Check that the customer is logged in.
-        Assert.assertTrue("Customer is not logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToAccountOverview']"));
+        final String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
 
-        // Check that it's the homepage.
-        final HtmlElement blogNameElement = page.getHtmlElementById("titleIndex");
-        Assert.assertNotNull("Title not found", blogNameElement);
+        //List of all occurrences for the selector
+        final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
+        
+        //Making sure that there is exactly one occurrence for our specified selector
+        Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
 
-        // Check the title.
-        Assert.assertEquals("Title does not match", "Check out our new panorama posters", blogNameElement.asText());
+        // Check that it's the homepage by looking for the Intro Quote.
+        final HtmlElement blogNameElement = page.getHtmlElementById("intro");
+        Assert.assertNotNull("Quote not found", blogNameElement);
+
+        // Check the quote.
+        Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asText());
     }
 }
