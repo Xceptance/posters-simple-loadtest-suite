@@ -4,8 +4,6 @@ import com.xceptance.posters.loadtest.util.Account;
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.html.DomNode;
-import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -104,15 +102,8 @@ public class Register extends AbstractHtmlPageAction
         // Check that it's the sign in page.
         Assert.assertTrue("Sign in form not found.", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
         Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
-        
-        //The log in selector 
-        final String logInButtonSelector = "#btnCartOverviewForm .goToLogin";
-        
-        //List of all occurrences for the selector
-        final DomNodeList<DomNode> foundElements = page.querySelectorAll(logInButtonSelector);
-        
-        //Making sure that there is exactly one occurrence for our specified selector
-        Assert.assertEquals("No or too many elements found for Selector: " + logInButtonSelector + " -", 1, foundElements.size());
-        
+
+        // Check that the customer is not logged in after registration.
+        Assert.assertTrue("Customer is logged in after registration.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToLogin']"));
     }
 }

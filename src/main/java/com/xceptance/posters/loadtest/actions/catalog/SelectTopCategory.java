@@ -84,6 +84,6 @@ public class SelectTopCategory extends AbstractHtmlPageAction
         Assert.assertTrue("Product over view element not present.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')/div/ul/li/div[@class='thumbnail']");
     }
 }

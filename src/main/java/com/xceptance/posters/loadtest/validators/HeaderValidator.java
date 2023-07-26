@@ -27,7 +27,7 @@ public class HeaderValidator
         // the brand logo
         Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "//img[@class ='shopLogo']"));
         // The search form
-        Assert.assertTrue("Search form not found.", HtmlPageUtils.isElementPresent(page, "id('search-form')"));
+        Assert.assertTrue("Search form not found.", HtmlPageUtils.isElementPresent(page, "id('header-search-trigger')"));
         // The search input
         Assert.assertTrue("Search input field not found.", HtmlPageUtils.isElementPresent(page, "id('s')"));
         // The search button

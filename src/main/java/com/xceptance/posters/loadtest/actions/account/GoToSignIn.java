@@ -1,7 +1,5 @@
 package com.xceptance.posters.loadtest.actions.account;
 
-import com.gargoylesoftware.htmlunit.html.DomNode;
-import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import org.junit.Assert;
 
@@ -40,19 +38,12 @@ public class GoToSignIn extends AbstractHtmlPageAction
         // Get the result of the previous action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
-        
-        //The sign in selector 
-        final String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
-        
-        //List of all occurrences for the selector
-        final DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);
-        
-        //Making sure that there is exactly one occurrence for our specified selector
-        Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());
+
+        // Check that no customer is logged in.
+        Assert.assertTrue("A customer is already logged in.", HtmlPageUtils.isElementPresent(page, "id('userMenu')//a[@class='goToLogin']"));
 
         // Remember the sign in button.
-        signInButton = (HtmlElement) foundElements.get(0);
-       
+        signInButton = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('userMenu')//a[@class='goToLogin']");
     }
 
     @Override

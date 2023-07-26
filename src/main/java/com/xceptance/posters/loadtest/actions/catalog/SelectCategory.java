@@ -4,8 +4,6 @@ import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import com.xceptance.posters.loadtest.validators.NavBarValidator;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.html.DomNode;
-import com.gargoylesoftware.htmlunit.html.DomNodeList;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
@@ -38,17 +36,9 @@ public class SelectCategory extends AbstractHtmlPageAction
     @Override
     public void preValidate() throws Exception
     {
-        // Get the result of the action.
-        final HtmlPage page = getPreviousAction().getHtmlPage();
-        
-        final String itemLinkSelector = "#categoryMenu .dropdown-menu a";
-
-        //List of all occurrences for the selector
-        final DomNodeList<DomNode> foundElements = page.querySelectorAll(itemLinkSelector);
-
         // Get all drop down item links and select one randomly.
-        categoryLink = (HtmlElement) HtmlPageUtils.pickOneRandomly(foundElements, false, false);
-
+        categoryLink = HtmlPageUtils.findHtmlElementsAndPickOne(getPreviousAction().getHtmlPage(),
+                                                                "id('categoryMenu')//ul[@class='dropdown-menu']/li/a");
     }
 
     @Override
@@ -79,6 +69,6 @@ public class SelectCategory extends AbstractHtmlPageAction
         Assert.assertTrue("Product over view element is bot present", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')/div/ul/li/div[@class='thumbnail']");
     }
 }
