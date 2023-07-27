@@ -98,7 +98,7 @@ public class AddToCart extends AbstractHtmlPageAction
         updatePriceParams.add(new NameValuePair("size", size));
 
         // Perform the AJAX call and return the result.
-        final WebResponse updatePriceResponse = AjaxUtils.callPost(page, "/updatePrice", updatePriceParams);
+        final WebResponse updatePriceResponse = AjaxUtils.callPost(page, "/posters/updatePrice", updatePriceParams);
 
         
         // Get JSON object from response.
@@ -152,7 +152,7 @@ public class AddToCart extends AbstractHtmlPageAction
         addToCartParams.add(new NameValuePair("size", size));
 
         // Perform the AJAX call and return the result.
-        final WebResponse addToCartResponse = AjaxUtils.callGet(page, "/addToCartSlider", addToCartParams);
+        final WebResponse addToCartResponse = AjaxUtils.callGet(page, "/posters/addToCartSlider", addToCartParams);
 
         // Get JSON object from response.
         final JSONObject addToCartJsonResponse = new JSONObject(addToCartResponse.getContentAsString());
