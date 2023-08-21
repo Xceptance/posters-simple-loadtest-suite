@@ -26,7 +26,10 @@ public class AjaxUtils
         final List<HtmlElement> scripts = page.getByXPath("/html/head/script[contains(.,'CONTEXT_PATH')]");
         Assert.assertFalse("No ContextPath script found in page", scripts.size()!=1);
         final String scriptText = scripts.get(0).getTextContent();
-        final String contextPath = RegExUtils.getFirstMatch(scriptText, "CONTEXT_PATH\\s*=\\s*'([^']+)'", 1);
+        String contextPath = RegExUtils.getFirstMatch(scriptText, "CONTEXT_PATH\\s*=\\s*'([^']+)'", 1);            
+        if(contextPath==null) {
+            contextPath="";
+        }
         return contextPath;
     }
     
