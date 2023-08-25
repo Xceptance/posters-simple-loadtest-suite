@@ -5,18 +5,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.junit.Assert;
 
 import com.gargoylesoftware.htmlunit.HttpMethod;
 import com.gargoylesoftware.htmlunit.WebRequest;
 import com.gargoylesoftware.htmlunit.WebResponse;
+import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.NameValuePair;
+import com.xceptance.common.util.RegExUtils;
 
 /**
  * Some utilities for AJAX requests.
  */
 public class AjaxUtils
 {
+    
+    public static String getContextPath(HtmlPage page)
+    {
+        final List<HtmlElement> scripts = page.getByXPath("/html/head/script[contains(.,'CONTEXT_PATH')]");
+        Assert.assertFalse("No ContextPath script found in page", scripts.size()!=1);
+        final String scriptText = scripts.get(0).getTextContent();
+        String contextPath = RegExUtils.getFirstMatch(scriptText, "CONTEXT_PATH\\s*=\\s*'([^']+)'", 1);            
+        if(contextPath==null) {
+            contextPath="";
+        }
+        return contextPath;
+    }
+    
     /**
      * Performs an XHR call for the given URL and parameters with method GET.
      * 

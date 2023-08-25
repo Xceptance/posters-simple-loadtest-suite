@@ -44,7 +44,7 @@ public class ProductDetailView extends AbstractHtmlPageAction
         Assert.assertTrue("Product Overview element missing.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ..and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')/div/ul/li/div[@class='thumbnail']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']");
 
         // Remember a random product's link URL.
         productDetailLink = HtmlPageUtils.findHtmlElementsAndPickOne(page, "id('productOverview')//div[@class='thumbnail']/div/a");
