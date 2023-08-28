@@ -4,17 +4,17 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xceptance.posters.loadtest.util.AjaxUtils;
-import com.xceptance.posters.loadtest.validators.HeaderValidator;
+import org.htmlunit.WebResponse;
+import org.htmlunit.html.HtmlElement;
+import org.htmlunit.html.HtmlPage;
+import org.htmlunit.util.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.WebResponse;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.util.NameValuePair;
 import com.xceptance.common.util.RegExUtils;
+import com.xceptance.posters.loadtest.util.AjaxUtils;
+import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 import com.xceptance.xlt.api.util.XltRandom;
@@ -162,7 +162,7 @@ public class Paging extends AbstractHtmlPageAction
         // Check if current page shows some search results.
         else if (path.contains("search"))
         {
-            pagingParams.add(new NameValuePair("searchText", HtmlPageUtils.findSingleHtmlElementByID(page, "searchText").asText()));
+            pagingParams.add(new NameValuePair("searchText", HtmlPageUtils.findSingleHtmlElementByID(page, "searchText").asNormalizedText()));
             // Execute the AJAX call and get the response.
             response = AjaxUtils.callPost(page, getProductOfSearchURL, pagingParams);
         }

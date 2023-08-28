@@ -2,17 +2,16 @@ package com.xceptance.posters.loadtest.actions;
 
 import java.net.URL;
 
+import org.htmlunit.html.HtmlElement;
+import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.xceptance.posters.loadtest.validators.HeaderValidator;
+import com.xceptance.posters.loadtest.validators.NavBarValidator;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
 import com.xceptance.xlt.api.validators.ContentLengthValidator;
 import com.xceptance.xlt.api.validators.HtmlEndTagValidator;
 import com.xceptance.xlt.api.validators.HttpResponseCodeValidator;
-
-import com.xceptance.posters.loadtest.validators.HeaderValidator;
-import com.xceptance.posters.loadtest.validators.NavBarValidator;
 
 /**
  * Loads the homepage from the given URL.<br/>
@@ -111,7 +110,7 @@ public class Homepage extends AbstractHtmlPageAction
         Assert.assertNotNull("Intro quote not found", introElement);
 
         // Get the content form the element.
-        final String text = introElement.asText();
+        final String text = introElement.asNormalizedText();
 
         // Make sure we have the correct intro quote.
         Assert.assertEquals("Intro quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", text);

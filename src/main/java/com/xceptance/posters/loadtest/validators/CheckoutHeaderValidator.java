@@ -1,8 +1,8 @@
 package com.xceptance.posters.loadtest.validators;
 
+import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 
 /**

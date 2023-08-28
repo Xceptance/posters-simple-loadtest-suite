@@ -1,11 +1,10 @@
 package com.xceptance.posters.loadtest.actions.order;
 
+import org.htmlunit.html.HtmlElement;
+import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
-
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 import com.xceptance.xlt.api.validators.ContentLengthValidator;

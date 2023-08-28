@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.htmlunit.HttpMethod;
+import org.htmlunit.WebRequest;
+import org.htmlunit.WebResponse;
+import org.htmlunit.html.HtmlElement;
+import org.htmlunit.html.HtmlPage;
+import org.htmlunit.httpclient.HttpClientConverter;
+import org.htmlunit.util.NameValuePair;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.HttpMethod;
-import com.gargoylesoftware.htmlunit.WebRequest;
-import com.gargoylesoftware.htmlunit.WebResponse;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
-import com.gargoylesoftware.htmlunit.util.NameValuePair;
 import com.xceptance.common.util.RegExUtils;
 
 /**
@@ -118,7 +119,7 @@ public class AjaxUtils
     public static String paramsToQueryString(final List<NameValuePair> parameters) throws Exception
     {
         final ArrayList<org.apache.http.NameValuePair> arr = new ArrayList<org.apache.http.NameValuePair>();
-        for (final org.apache.http.NameValuePair nvp : NameValuePair.toHttpClient(parameters))
+        for (final org.apache.http.NameValuePair nvp : HttpClientConverter.nameValuePairsToHttpClient(parameters))
         {
             arr.add(nvp);
         }

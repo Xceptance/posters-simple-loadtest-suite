@@ -1,14 +1,13 @@
 package com.xceptance.posters.loadtest.actions.order;
 
-import com.xceptance.posters.loadtest.util.Account;
-import com.xceptance.posters.loadtest.util.Address;
+import org.htmlunit.html.HtmlElement;
+import org.htmlunit.html.HtmlForm;
+import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
+import com.xceptance.posters.loadtest.util.Account;
+import com.xceptance.posters.loadtest.util.Address;
 import com.xceptance.posters.loadtest.validators.CheckoutHeaderValidator;
-
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 import com.xceptance.xlt.api.validators.ContentLengthValidator;

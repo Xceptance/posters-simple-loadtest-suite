@@ -1,12 +1,11 @@
 package com.xceptance.posters.loadtest.actions;
 
-import com.xceptance.posters.loadtest.util.SearchOption;
+import org.htmlunit.html.HtmlForm;
+import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
+import com.xceptance.posters.loadtest.util.SearchOption;
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
-
-import com.gargoylesoftware.htmlunit.html.HtmlForm;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 import com.xceptance.xlt.api.validators.ContentLengthValidator;

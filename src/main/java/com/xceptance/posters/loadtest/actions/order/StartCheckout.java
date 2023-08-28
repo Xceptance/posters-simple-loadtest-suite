@@ -1,12 +1,12 @@
 package com.xceptance.posters.loadtest.actions.order;
 
-import com.xceptance.posters.loadtest.validators.CheckoutHeaderValidator;
+import org.htmlunit.html.DomNode;
+import org.htmlunit.html.DomNodeList;
+import org.htmlunit.html.HtmlElement;
+import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
-import com.gargoylesoftware.htmlunit.html.DomNode;
-import com.gargoylesoftware.htmlunit.html.DomNodeList;
-import com.gargoylesoftware.htmlunit.html.HtmlElement;
-import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import com.xceptance.posters.loadtest.validators.CheckoutHeaderValidator;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 import com.xceptance.xlt.api.validators.ContentLengthValidator;
@@ -53,7 +53,7 @@ public class StartCheckout extends AbstractHtmlPageAction
         final HtmlElement cartItemQuantity = (HtmlElement) foundElements.get(0);
         
         // Check that the cart is not empty.
-        final boolean cartIsEmpty = cartItemQuantity.asText().matches(".*: 0.*");
+        final boolean cartIsEmpty = cartItemQuantity.asNormalizedText().matches(".*: 0.*");
         Assert.assertFalse("Cart must not be empty for checkout.", cartIsEmpty);
 
         // Check that the checkout link is available.
