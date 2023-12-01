@@ -15,70 +15,66 @@ import com.xceptance.xlt.api.validators.HtmlEndTagValidator;
 import com.xceptance.xlt.api.validators.HttpResponseCodeValidator;
 
 /**
- * Selects a random sub-category links and opens the related product overview page.
+ * Selects a random sub-category links and opens the related product overview
+ * page.
  */
-public class SelectCategory extends AbstractHtmlPageAction
-{
-    /**
-     * Chosen level-1 category.
-     */
-    private HtmlElement categoryLink;
+public class SelectCategory extends AbstractHtmlPageAction {
+	/**
+	 * Chosen level-1 category.
+	 */
+	private HtmlElement categoryLink;
 
-    /**
-     * Constructor
-     * 
-     * @param previousAction
-     *            The previously performed action
-     */
-    public SelectCategory(final AbstractHtmlPageAction previousAction)
-    {
-        super(previousAction, null);
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param previousAction The previously performed action
+	 */
+	public SelectCategory(final AbstractHtmlPageAction previousAction) {
+		super(previousAction, null);
+	}
 
-    @Override
-    public void preValidate() throws Exception
-    {
-        // Get the result of the action.
-        final HtmlPage page = getPreviousAction().getHtmlPage();
-        
-        final String itemLinkSelector = "#categoryMenu .dropdown-menu a";
+	@Override
+	public void preValidate() throws Exception {
+		// Get the result of the action.
+		final HtmlPage page = getPreviousAction().getHtmlPage();
 
-        //List of all occurrences for the selector
-        final DomNodeList<DomNode> foundElements = page.querySelectorAll(itemLinkSelector);
+		final String itemLinkSelector = "#header-categories .dropdown .dropdown-toggle";
 
-        // Get all drop down item links and select one randomly.
-        categoryLink = (HtmlElement) HtmlPageUtils.pickOneRandomly(foundElements, false, false);
+		// List of all occurrences for the selector
+		final DomNodeList<DomNode> foundElements = page.querySelectorAll(itemLinkSelector);
 
-    }
+		// Get all drop down item links and select one randomly.
+		categoryLink = (HtmlElement) HtmlPageUtils.pickOneRandomly(foundElements, false, false);
 
-    @Override
-    protected void execute() throws Exception
-    {
-        // Click the link.
-        loadPageByClick(categoryLink);
-    }
+	}
 
-    @Override
-    protected void postValidate() throws Exception
-    {
-        // Get the result of the action.
-        final HtmlPage page = getHtmlPage();
+	@Override
+	protected void execute() throws Exception {
+		// Click the link.
+		loadPageByClick(categoryLink);
+	}
 
-        // Basic checks that are part of the XLT API.
-        HttpResponseCodeValidator.getInstance().validate(page);
-        ContentLengthValidator.getInstance().validate(page);
-        HtmlEndTagValidator.getInstance().validate(page);
+	@Override
+	protected void postValidate() throws Exception {
+		// Get the result of the action.
+		final HtmlPage page = getHtmlPage();
 
-        // Check for the header.
-        HeaderValidator.getInstance().validate(page);
+		// Basic checks that are part of the XLT API.
+		HttpResponseCodeValidator.getInstance().validate(page);
+		ContentLengthValidator.getInstance().validate(page);
+		HtmlEndTagValidator.getInstance().validate(page);
 
-        // Check the side navigation.
-        NavBarValidator.getInstance().validate(page);
+		// Check for the header.
+		HeaderValidator.getInstance().validate(page);
 
-        // The product over view element is present....
-        Assert.assertTrue("Product over view element is bot present", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
+		// Check the side navigation.
+		NavBarValidator.getInstance().validate(page);
 
-        // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']");
-    }
+		// The product over view element is present....
+		Assert.assertTrue("Product over view element is not present",
+				HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
+
+		// ...and we also see some poster's thumbnail images.
+		HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']");
+	}
 }
