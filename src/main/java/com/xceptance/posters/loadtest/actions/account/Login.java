@@ -17,96 +17,93 @@ import com.xceptance.xlt.api.validators.HttpResponseCodeValidator;
 
 /**
  * Fill in and submit the sign in form. <br>
- * The previous action should be {@link GoToSignIn}. The resulting page is the homepage.
+ * The previous action should be {@link GoToSignIn}. The resulting page is the
+ * homepage.
  */
-public class Login extends AbstractHtmlPageAction
-{
-    /**
-     * The sign in form.
-     */
-    private HtmlForm signInForm;
+public class Login extends AbstractHtmlPageAction {
+	/**
+	 * The sign in form.
+	 */
+	private HtmlForm signInForm;
 
-    /**
-     * The button to submit the sign in form.
-     */
-    private HtmlElement signInButton;
+	/**
+	 * The button to submit the sign in form.
+	 */
+	private HtmlElement signInButton;
 
-    /**
-     * The account to log in.
-     */
-    private final Account account;
+	/**
+	 * The account to log in.
+	 */
+	private final Account account;
 
-    /**
-     * Constructor
-     * 
-     * @param previousAction
-     *            the previously performed action
-     * @param account
-     *            the account to log in
-     */
-    public Login(final AbstractHtmlPageAction previousAction, final Account account)
-    {
-        super(previousAction, null);
-        this.account = account;
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param previousAction the previously performed action
+	 * @param account        the account to log in
+	 */
+	public Login(final AbstractHtmlPageAction previousAction, final Account account) {
+		super(previousAction, null);
+		this.account = account;
+	}
 
-    @Override
-    public void preValidate() throws Exception
-    {
-        // Get the result of the previous action.
-        final HtmlPage page = getPreviousAction().getHtmlPage();
-        Assert.assertNotNull("Failed to get page from previous action.", page);
+	@Override
+	public void preValidate() throws Exception {
+		// Get the result of the previous action.
+		final HtmlPage page = getPreviousAction().getHtmlPage();
+		Assert.assertNotNull("Failed to get page from previous action.", page);
 
-        // Check that the sign in form is available.
-        Assert.assertTrue("Sign in form not found", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
+		// Check that the sign in form is available.
+		Assert.assertTrue("Sign in form not found", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
 
-        // Remember the sign in form.
-        signInForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formLogin");
+		// Remember the sign in form.
+		signInForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formLogin");
 
-        // Check that the sign in button is available.
-        Assert.assertTrue("Sign in button not found", HtmlPageUtils.isElementPresent(page, "id('btnSignIn')"));
+		// Check that the sign in button is available.
+		Assert.assertTrue("Sign in button not found", HtmlPageUtils.isElementPresent(page, "id('btnSignIn')"));
 
-        // Remember the sign in button.
-        signInButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnSignIn");
-    }
+		// Remember the sign in button.
+		signInButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnSignIn");
+	}
 
-    @Override
-    protected void execute() throws Exception
-    {
-        // Fill in the form.
-        HtmlPageUtils.setInputValue(signInForm, "email", account.getEmail());
-        HtmlPageUtils.setInputValue(signInForm, "password", account.getPassword());
+	@Override
+	protected void execute() throws Exception {
+		// Fill in the form.
+		HtmlPageUtils.setInputValue(signInForm, "email", account.getEmail());
+		HtmlPageUtils.setInputValue(signInForm, "password", account.getPassword());
 
-        // Submit the registration form.
-        loadPageByClick(signInButton);
-    }
+		// Submit the registration form.
+		loadPageByClick(signInButton);
+	}
 
-    @Override
-    protected void postValidate() throws Exception
-    {
-        // Get the result of the action.
-        final HtmlPage page = getHtmlPage();
+	@Override
+	protected void postValidate() throws Exception {
+		// Get the result of the action.
+		final HtmlPage page = getHtmlPage();
 
-        // Basic checks - see action 'Homepage' for some more details how and when to use these validators.
-        HttpResponseCodeValidator.getInstance().validate(page);
-        ContentLengthValidator.getInstance().validate(page);
-        HtmlEndTagValidator.getInstance().validate(page);
+		// Basic checks - see action 'Homepage' for some more details how and when to
+		// use these validators.
+		HttpResponseCodeValidator.getInstance().validate(page);
+		ContentLengthValidator.getInstance().validate(page);
+		HtmlEndTagValidator.getInstance().validate(page);
 
-        HeaderValidator.getInstance().validate(page);
+		HeaderValidator.getInstance().validate(page);
 
-        final String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
+		final String accountButtonSelector = "#go-to-account-overview";
 
-        //List of all occurrences for the selector
-        final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
-        
-        //Making sure that there is exactly one occurrence for our specified selector
-        Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
+		// List of all occurrences for the selector
+		final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
 
-        // Check that it's the homepage by looking for the Intro Quote.
-        final HtmlElement blogNameElement = page.getHtmlElementById("intro");
-        Assert.assertNotNull("Quote not found", blogNameElement);
+		// Making sure that there is exactly one occurrence for our specified selector
+		Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1,
+				foundElements.size());
 
-        // Check the quote.
-        Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asNormalizedText());
-    }
+		// Check that it's the homepage by looking for the Intro Quote.
+		final HtmlElement blogNameElement = page.getHtmlElementById("intro-text-homepage");
+		Assert.assertNotNull("Quote not found", blogNameElement);
+
+		// Check the quote.
+		Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott",
+				blogNameElement.asNormalizedText());
+	}
 }
