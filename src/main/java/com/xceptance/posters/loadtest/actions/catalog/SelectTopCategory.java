@@ -38,7 +38,7 @@ public class SelectTopCategory extends AbstractHtmlPageAction
     {
         // Get all top category links and select one randomly.
         topCategoryLink = HtmlPageUtils.findHtmlElementsAndPickOne(getPreviousAction().getHtmlPage(),
-                                                                   "id('categoryMenu')//a[@class='topCategoryMenuItem']");
+                                                                   "id('header-categories')/li[@class='nav-item dropdown']/a[@class='nav-link dropdown-toggle']");
     }
 
     @Override
@@ -84,6 +84,6 @@ public class SelectTopCategory extends AbstractHtmlPageAction
         Assert.assertTrue("Product over view element not present.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']']");
     }
 }

@@ -40,10 +40,10 @@ public class GoToRegistrationForm extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the registration link is available.
-        Assert.assertTrue("Registration link not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
+        Assert.assertTrue("Registration link not found.", HtmlPageUtils.isElementPresent(page, "id('go-to-registration')"));
 
         // Remember the registration link.
-        registerLink = HtmlPageUtils.findSingleHtmlElementByID(page, "linkRegister");
+        registerLink = HtmlPageUtils.findSingleHtmlElementByID(page, "go-to-registration");
     }
 
     @Override
@@ -67,7 +67,7 @@ public class GoToRegistrationForm extends AbstractHtmlPageAction
         HeaderValidator.getInstance().validate(page);
 
         // Check that it's the registration page.
-        Assert.assertTrue("Registration form not found.", HtmlPageUtils.isElementPresent(page, "id('formRegister')"));
-        Assert.assertTrue("Button to create account not found.", HtmlPageUtils.isElementPresent(page, "id('btnRegister')"));
+        Assert.assertTrue("Registration form not found.", HtmlPageUtils.isElementPresent(page, "id('form-register')"));
+        Assert.assertTrue("Button to create account not found.", HtmlPageUtils.isElementPresent(page, "id('btn-register')"));
     }
 }

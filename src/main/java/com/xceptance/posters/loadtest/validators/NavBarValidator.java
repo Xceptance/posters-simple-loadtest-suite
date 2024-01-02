@@ -31,7 +31,7 @@ public class NavBarValidator
         // Check that the category menu contains at least two top categories
         // For this purpose we get a list of all top categories and check the
         // size of the list
-        final List<HtmlElement> topCategories = HtmlPageUtils.findHtmlElements(page, "id('categoryMenu')/ul/li[@class='has-dropdown']");
+        final List<HtmlElement> topCategories = HtmlPageUtils.findHtmlElements(page, "id('header-categories')/li[@class='nav-item dropdown']");
         Assert.assertTrue("There are less then two top categories in the side nav.", topCategories.size() >= 2);
 
         // Check that each top category has at least one drop down item
@@ -41,7 +41,7 @@ public class NavBarValidator
             final HtmlElement htmlElement = iterator.next();
             // relative xpath to address the first sibling after the top
             // category that is a drop down item
-            Assert.assertTrue("Top category is not followed by a level-1 category.",!page.querySelectorAll("#categoryMenu .dropdown-menu").isEmpty());
+            Assert.assertTrue("Top category is not followed by a level-1 category.",!page.querySelectorAll("#header-categories .dropdown-menu").isEmpty());
         }
 
     }

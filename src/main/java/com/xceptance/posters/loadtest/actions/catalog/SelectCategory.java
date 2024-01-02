@@ -41,7 +41,7 @@ public class SelectCategory extends AbstractHtmlPageAction
         // Get the result of the action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         
-        final String itemLinkSelector = "#categoryMenu .dropdown-menu a";
+        final String itemLinkSelector = "#header-categories .dropdown .dropdown-toggle";
 
         //List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(itemLinkSelector);
@@ -79,6 +79,6 @@ public class SelectCategory extends AbstractHtmlPageAction
         Assert.assertTrue("Product over view element is bot present", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']");
     }
 }

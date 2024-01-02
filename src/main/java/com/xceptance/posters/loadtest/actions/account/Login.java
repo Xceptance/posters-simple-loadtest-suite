@@ -94,7 +94,7 @@ public class Login extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        final String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
+        final String accountButtonSelector = "#go-to-account-overview";
 
         //List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
@@ -103,7 +103,7 @@ public class Login extends AbstractHtmlPageAction
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
 
         // Check that it's the homepage by looking for the Intro Quote.
-        final HtmlElement blogNameElement = page.getHtmlElementById("intro");
+        final HtmlElement blogNameElement = page.getHtmlElementById("intro-text-homepage");
         Assert.assertNotNull("Quote not found", blogNameElement);
 
         // Check the quote.

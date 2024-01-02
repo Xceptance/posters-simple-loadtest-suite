@@ -106,7 +106,7 @@ public class Homepage extends AbstractHtmlPageAction
         NavBarValidator.getInstance().validate(page);
 
         // Get the homepage intro quote.
-        final HtmlElement introElement = page.getHtmlElementById("colorlib-intro");
+        final HtmlElement introElement = page.getHtmlElementById("intro-text-homepage");
         Assert.assertNotNull("Intro quote not found", introElement);
 
         // Get the content form the element.

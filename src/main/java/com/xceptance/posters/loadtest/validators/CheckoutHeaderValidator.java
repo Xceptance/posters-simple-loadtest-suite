@@ -25,9 +25,9 @@ public class CheckoutHeaderValidator
     {
         // assert presence of some basic elements in the header
         // the brand logo
-        Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "id('colorlib-logo')"));
+        Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "id('header-brand')"));
         // the showUserMenu button
-        Assert.assertTrue("Cart overview in header not found.", HtmlPageUtils.isElementPresent(page, "id('showUserMenu')"));
+        Assert.assertTrue("Cart overview in header not found.", HtmlPageUtils.isElementPresent(page, "id('show-user-menu')"));
     }
 
     /**

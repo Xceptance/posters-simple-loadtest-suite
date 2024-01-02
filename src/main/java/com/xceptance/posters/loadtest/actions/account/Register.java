@@ -57,16 +57,16 @@ public class Register extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the registration form is available.
-        Assert.assertTrue("Registration form not found", HtmlPageUtils.isElementPresent(page, "id('formRegister')"));
+        Assert.assertTrue("Registration form not found", HtmlPageUtils.isElementPresent(page, "id('form-register')"));
 
         // Remember the registration form.
-        registrationForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formRegister");
+        registrationForm = HtmlPageUtils.findSingleHtmlElementByID(page, "form-register");
 
         // Check that the create account button is available.
-        Assert.assertTrue("Create account button not found", HtmlPageUtils.isElementPresent(page, "id('btnRegister')"));
+        Assert.assertTrue("Create account button not found", HtmlPageUtils.isElementPresent(page, "id('btn-register')"));
 
         // Remember the create account button.
-        createAccountButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnRegister");
+        createAccountButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-register");
     }
 
     @Override
@@ -106,7 +106,7 @@ public class Register extends AbstractHtmlPageAction
         Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
         
         //The log in selector 
-        final String logInButtonSelector = "#btnCartOverviewForm .goToLogin";
+        final String logInButtonSelector = "#header-customer-menus #go-to-login";
         
         //List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(logInButtonSelector);

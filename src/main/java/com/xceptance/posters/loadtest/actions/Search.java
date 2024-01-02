@@ -62,10 +62,10 @@ public class Search extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the search form is available.
-        Assert.assertTrue("Search form not found.", HtmlPageUtils.isElementPresent(page, "id('search-form')"));
+        Assert.assertTrue("Search form not found.", HtmlPageUtils.isElementPresent(page, "id('header-search-form')"));
 
         // Remember the search form.
-        searchForm = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('search-form')");
+        searchForm = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('header-search-form')");
     }
 
     /**

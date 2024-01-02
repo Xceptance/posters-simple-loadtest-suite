@@ -42,7 +42,7 @@ public class GoToSignIn extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
         
         //The sign in selector 
-        final String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
+        final String signInButtonSelector = "#header-customer-menus #go-to-login";
         
         //List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);

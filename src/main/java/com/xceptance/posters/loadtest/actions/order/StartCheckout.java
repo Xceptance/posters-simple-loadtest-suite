@@ -42,7 +42,7 @@ public class StartCheckout extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
         
         //The item quantity in mini cart selector 
-        final String itemQuantity = "#miniCartMenu .font-bold";
+        final String itemQuantity = "#mini-cart-menu .cartMiniProductCounter .value";
         
         //List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(itemQuantity);

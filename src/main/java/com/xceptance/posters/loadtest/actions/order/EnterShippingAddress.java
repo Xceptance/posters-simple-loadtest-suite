@@ -84,10 +84,10 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
         shippingAddressForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formAddDelAddr");
 
         // Check that the button to submit the shipping address is available.
-        Assert.assertTrue("Button to submit shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('btnAddDelAddr')"));
+        Assert.assertTrue("Button to submit shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('button-add-shipping-address')"));
 
         // Remember the button to submit the shipping address.
-        submitAddressButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnAddDelAddr");
+        submitAddressButton = HtmlPageUtils.findSingleHtmlElementByID(page, "button-add-shipping-address");
     }
 
     @Override
