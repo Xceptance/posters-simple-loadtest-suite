@@ -101,7 +101,7 @@ public class Register extends AbstractHtmlPageAction
                                              .contains("Your account has been created. Log in with your email address and password.");
         Assert.assertTrue("Registration failed.", isAccountCreated);
 
-        // Check that it's the sign in page.
+        // Check that it's the sign-in page.
         Assert.assertTrue("Sign in form not found.", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
         Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
         
@@ -113,6 +113,5 @@ public class Register extends AbstractHtmlPageAction
         
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + logInButtonSelector + " -", 1, foundElements.size());
-        
     }
 }

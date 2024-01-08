@@ -42,15 +42,15 @@ public class Logout extends AbstractHtmlPageAction
 
         final String accountButtonSelector = "#go-to-account-overview";
 
-        //List of all occurrences for the selector
+        // List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
         
-        //Making sure that there is exactly one occurrence for our specified selector
+        // Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
         
         final String logoutLinkSelector = "#go-to-logout";
 
-        //Making sure that there is exactly one occurrence for our specified selector
+        // Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + logoutLinkSelector + " -", 1, page.querySelectorAll(logoutLinkSelector).size());
 
         // Remember logout link.
@@ -77,13 +77,13 @@ public class Logout extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        //The sign in selector 
+        // The sign-in selector
         String signInButtonSelector = "#go-to-login";
         
-        //List of all occurrences for the selector
+        // List of all occurrences for the selector
         DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);
         
-        //Making sure that there is exactly one occurrence for our specified selector
+        // Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());
 
         // Check that it's the home page.

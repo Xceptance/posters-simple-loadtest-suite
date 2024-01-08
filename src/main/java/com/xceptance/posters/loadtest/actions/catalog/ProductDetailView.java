@@ -43,13 +43,12 @@ public class ProductDetailView extends AbstractHtmlPageAction
         // Check the current page is a product overview category page...
         Assert.assertTrue("Product Overview element missing.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
-        // ..and we also see some poster's thumbnail images.
+        // ...and we also see some poster's thumbnail images.
         HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']");
 
         // Remember a random product's link URL.
         productDetailLink = HtmlPageUtils.findHtmlElementsAndPickOne(page, "id('productOverview')//div[@class='card-body']/a");
         Assert.assertNotNull("No matching product detail link found.", productDetailLink);
-
     }
 
     @Override
@@ -57,7 +56,6 @@ public class ProductDetailView extends AbstractHtmlPageAction
     {
         // Click on the chosen product detail link to load the product detail page.
         loadPageByClick(productDetailLink);
-
     }
 
     @Override

@@ -48,7 +48,6 @@ public class SelectCategory extends AbstractHtmlPageAction
 
         // Get all drop down item links and select one randomly.
         categoryLink = (HtmlElement) HtmlPageUtils.pickOneRandomly(foundElements, false, false);
-
     }
 
     @Override
@@ -75,7 +74,7 @@ public class SelectCategory extends AbstractHtmlPageAction
         // Check the side navigation.
         NavBarValidator.getInstance().validate(page);
 
-        // The product over view element is present....
+        // The product overview element is present...
         Assert.assertTrue("Product over view element is bot present", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
