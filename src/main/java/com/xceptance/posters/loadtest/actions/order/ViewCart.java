@@ -40,10 +40,10 @@ public class ViewCart extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the cart overview link is available.
-        Assert.assertTrue("Cart overview link not found", HtmlPageUtils.isElementPresent(page, "id('miniCartMenu')//div[@class='linkButton']/a"));
+        Assert.assertTrue("Cart overview link not found", HtmlPageUtils.isElementPresent(page, "id('mini-cart-menu')//div[@class='linkButton']/a"));
 
         // Remember cart overview link.
-        viewCartLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('miniCartMenu')//div[@class='linkButton']/a");
+        viewCartLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('mini-cart-menu')//div[@class='linkButton']/a");
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ViewCart extends AbstractHtmlPageAction
         HeaderValidator.getInstance().validate(page);
 
         // Check that it's the cart overview page.
-        Assert.assertTrue("Title not found", HtmlPageUtils.isElementPresent(page, "id('titleCart')"));
+        Assert.assertTrue("Title not found", HtmlPageUtils.isElementPresent(page, "id('cart-title')"));
         Assert.assertTrue("Total price not found", HtmlPageUtils.isElementPresent(page, "id('orderSubTotalValue')"));
         Assert.assertTrue("Checkout button not found", HtmlPageUtils.isElementPresent(page, "id('btnStartCheckout')"));
     }

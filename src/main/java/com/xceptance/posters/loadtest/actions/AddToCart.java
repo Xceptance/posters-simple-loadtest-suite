@@ -39,11 +39,6 @@ public class AddToCart extends AbstractHtmlPageAction
     private String finish;
 
     /**
-     * The 'Add to cart' form.
-     */
-    private HtmlForm addToCartForm;
-
-    /**
      * Constructor.
      *
      * @param previousAction
@@ -62,21 +57,20 @@ public class AddToCart extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Look up the 'add to cart' form.
-        addToCartForm = HtmlPageUtils.findSingleHtmlElementByID(page, "addToCartForm");
+        HtmlForm addToCartForm = HtmlPageUtils.findSingleHtmlElementByID(page, "add-to-cart-form");
 
         // Configure the product by selecting a random finish (matte or gloss).
-        finish = HtmlPageUtils.findHtmlElementsAndPickOne(addToCartForm, "id('selectStyle')/div/label").getTextContent().trim();
+        finish = HtmlPageUtils.findHtmlElementsAndPickOne(addToCartForm, "id('product-detail-form-style-selection')//label").getTextContent().trim();
 
         // We choose one of the size options randomly and remember it as a string.
         // We will need it as a parameter later on in the subsequent AJAX calls
         // to update the price and add poster to cart.
-        final HtmlElement option = HtmlPageUtils.findHtmlElementsAndPickOne(page, "id('selectSize')/option");
+        final HtmlElement option = HtmlPageUtils.findHtmlElementsAndPickOne(page, "id('product-detail-form-size-selection')/option");
         // Get the text content of the element as trimmed string.
         size = option.getTextContent().trim();
 
         // Get the product ID. This is also needed for the AJAX calls.
-        productId = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('addToCartForm')/div[@class='colorlib-product']")
-                                 .getAttribute("id");
+        productId = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('product-detail-form-product-id')").getTextContent();
 
         // Assert the presence of the add to cart button (even though we do not use
         // it here since we're just simulating the AJAX calls that are normally
@@ -87,13 +81,13 @@ public class AddToCart extends AbstractHtmlPageAction
     @Override
     protected void execute() throws Exception
     {
-        // Get the result of the this action.
+        // Get the result of this action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
 
         // (1) Update price.
         // First we collect the (POST) request parameters for the call and
         // create a list of name value pairs, one for each parameter.
-        final List<NameValuePair> updatePriceParams = new ArrayList<NameValuePair>();
+        final List<NameValuePair> updatePriceParams = new ArrayList<>();
         updatePriceParams.add(new NameValuePair("productId", productId));
         updatePriceParams.add(new NameValuePair("size", size));
 
@@ -116,17 +110,17 @@ public class AddToCart extends AbstractHtmlPageAction
         // Put the returned price into the page.
         // Note: This is not necessary since we just want to simulate realistic traffic for the server and normally do
         // not care about client side stuff.
-        HtmlPageUtils.findSingleHtmlElementByID(page, "prodPrice").setTextContent(newPrice);
+        HtmlPageUtils.findSingleHtmlElementByID(page, "product-detail-form-price").setTextContent(newPrice);
         
         // (2) Get cart element slider content before adding poster to cart.
         // Read the html elements from miniCartSlider to get it's content
-        List<Integer> oldProductID = new ArrayList<Integer>();
-        List<String> oldFinish = new ArrayList<String>();
-        List<Integer> oldWidth = new ArrayList<Integer>();
-        List<Integer> oldHeight = new ArrayList<Integer>();
-        List<Integer> oldCount = new ArrayList<Integer>();
+        List<Integer> oldProductID = new ArrayList<>();
+        List<String> oldFinish = new ArrayList<>();
+        List<Integer> oldWidth = new ArrayList<>();
+        List<Integer> oldHeight = new ArrayList<>();
+        List<Integer> oldCount = new ArrayList<>();
         final List<HtmlElement> oldCartItems = page.getByXPath("id('miniCartMenu')//li[contains(@class, 'miniCartItem')]");           
-        if (oldCartItems.size() != 0){           
+        if (!oldCartItems.isEmpty()){
             for (HtmlElement item : oldCartItems) {
                 oldProductID.add(Integer.parseInt(item.getAttribute("data-prodId")));
                 final List<HtmlElement> oldCartItemsAttr = item.getElementsByTagName("span");
@@ -145,11 +139,11 @@ public class AddToCart extends AbstractHtmlPageAction
                     }
                 }
             }            
-        };
+        }
         
         // (3) Add poster to cart.
         // Collect the request parameters.
-        final List<NameValuePair> addToCartParams = new ArrayList<NameValuePair>();
+        final List<NameValuePair> addToCartParams = new ArrayList<>();
         addToCartParams.add(new NameValuePair("productId", productId));
         addToCartParams.add(new NameValuePair("finish", finish));
         addToCartParams.add(new NameValuePair("size", size));
@@ -194,7 +188,7 @@ public class AddToCart extends AbstractHtmlPageAction
                 // The product was in cart before so let's remember the initial count.
                 cartItemQuantity = oldCount.get(i);
 
-                // A product can exist in cart only once so we can stop searching.
+                // A product can exist in cart only once, so we can stop searching.
                 break;
             }
         }

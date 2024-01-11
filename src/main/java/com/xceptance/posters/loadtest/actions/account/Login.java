@@ -16,18 +16,18 @@ import com.xceptance.xlt.api.validators.HtmlEndTagValidator;
 import com.xceptance.xlt.api.validators.HttpResponseCodeValidator;
 
 /**
- * Fill in and submit the sign in form. <br>
+ * Fill in and submit the sign-in form. <br>
  * The previous action should be {@link GoToSignIn}. The resulting page is the homepage.
  */
 public class Login extends AbstractHtmlPageAction
 {
     /**
-     * The sign in form.
+     * The sign-in form.
      */
     private HtmlForm signInForm;
 
     /**
-     * The button to submit the sign in form.
+     * The button to submit the sign-in form.
      */
     private HtmlElement signInButton;
 
@@ -57,16 +57,16 @@ public class Login extends AbstractHtmlPageAction
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
-        // Check that the sign in form is available.
-        Assert.assertTrue("Sign in form not found", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
+        // Check that the sign-in form is available.
+        Assert.assertTrue("Sign-in form not found", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
 
-        // Remember the sign in form.
+        // Remember the sign-in form.
         signInForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formLogin");
 
-        // Check that the sign in button is available.
-        Assert.assertTrue("Sign in button not found", HtmlPageUtils.isElementPresent(page, "id('btnSignIn')"));
+        // Check that the sign-in button is available.
+        Assert.assertTrue("Sign-in button not found", HtmlPageUtils.isElementPresent(page, "id('btnSignIn')"));
 
-        // Remember the sign in button.
+        // Remember the sign-in button.
         signInButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnSignIn");
     }
 
@@ -94,7 +94,7 @@ public class Login extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        final String accountButtonSelector = "#btnCartOverviewForm .goToAccountOverview";
+        final String accountButtonSelector = "#go-to-account-overview";
 
         //List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(accountButtonSelector);
@@ -103,7 +103,7 @@ public class Login extends AbstractHtmlPageAction
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
 
         // Check that it's the homepage by looking for the Intro Quote.
-        final HtmlElement blogNameElement = page.getHtmlElementById("intro");
+        final HtmlElement blogNameElement = page.getHtmlElementById("intro-text-homepage");
         Assert.assertNotNull("Quote not found", blogNameElement);
 
         // Check the quote.

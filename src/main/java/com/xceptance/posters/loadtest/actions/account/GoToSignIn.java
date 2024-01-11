@@ -14,12 +14,12 @@ import com.xceptance.xlt.api.validators.HtmlEndTagValidator;
 import com.xceptance.xlt.api.validators.HttpResponseCodeValidator;
 
 /**
- * Browse to the sign in page.
+ * Browse to the sign-in page.
  */
 public class GoToSignIn extends AbstractHtmlPageAction
 {
     /**
-     * The sign in button.
+     * The sign-in button.
      */
     private HtmlElement signInButton;
 
@@ -41,16 +41,16 @@ public class GoToSignIn extends AbstractHtmlPageAction
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
         
-        //The sign in selector 
-        final String signInButtonSelector = "#btnCartOverviewForm .goToLogin";
+        // The sign-in selector
+        final String signInButtonSelector = "#header-customer-menus #go-to-login";
         
-        //List of all occurrences for the selector
+        // List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(signInButtonSelector);
         
-        //Making sure that there is exactly one occurrence for our specified selector
+        // Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + signInButtonSelector + " -", 1, foundElements.size());
 
-        // Remember the sign in button.
+        // Remember the sign-in button.
         signInButton = (HtmlElement) foundElements.get(0);
        
     }
@@ -58,7 +58,7 @@ public class GoToSignIn extends AbstractHtmlPageAction
     @Override
     protected void execute() throws Exception
     {
-        // Click the button to load the sign in page.
+        // Click the button to load the sign-in page.
         loadPageByClick(signInButton);
     }
 
@@ -75,8 +75,8 @@ public class GoToSignIn extends AbstractHtmlPageAction
 
         HeaderValidator.getInstance().validate(page);
 
-        // Check that it's the sign in page.
-        Assert.assertTrue("Sign in form not found.", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
+        // Check that it's the sign-in page.
+        Assert.assertTrue("Sign-in form not found.", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
         Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
     }
 }

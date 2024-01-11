@@ -6,7 +6,7 @@ import org.junit.Assert;
 import com.xceptance.xlt.api.util.HtmlPageUtils;
 
 /**
- * Checks for the correct header elements dring checkout.
+ * Checks for the correct header elements during checkout.
  */
 public class CheckoutHeaderValidator
 {
@@ -18,16 +18,15 @@ public class CheckoutHeaderValidator
     /**
      * Checks the poster store header elements.
      * 
-     * @param page
-     *            the page to check
+     * @param page The page to check.
      */
     public void validate(final HtmlPage page) throws Exception
     {
-        // assert presence of some basic elements in the header
-        // the brand logo
-        Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "id('colorlib-logo')"));
-        // the showUserMenu button
-        Assert.assertTrue("Cart overview in header not found.", HtmlPageUtils.isElementPresent(page, "id('showUserMenu')"));
+        // Validate presence of some basic elements in the header:
+        // The brand logo
+        Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "id('header-brand')"));
+        // The showUserMenu button
+        Assert.assertTrue("Cart overview in header not found.", HtmlPageUtils.isElementPresent(page, "id('show-user-menu')"));
     }
 
     /**

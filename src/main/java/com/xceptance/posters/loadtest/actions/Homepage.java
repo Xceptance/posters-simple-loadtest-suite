@@ -46,7 +46,7 @@ public class Homepage extends AbstractHtmlPageAction
     @Override
     public void preValidate() throws Exception
     {
-        // We have to check, whether or not the passed URL string is valid.
+        // We have to check, whether the passed URL string is valid.
         Assert.assertNotNull("Url must not be null", urlAsString);
 
         // Use the java URL class to do the final validation since it will throw
@@ -70,7 +70,7 @@ public class Homepage extends AbstractHtmlPageAction
     /**
      * Validate the correctness of the result. Once the homepage has been loaded, we can ensure that certain key
      * elements are present in our previous request's responses. For example, here we are validating that the proper
-     * response code was sent, the length of the page is correct, an end tag is present, there is a head line on the
+     * response code was sent, the length of the page is correct, an end tag is present, there is a headline on the
      * page. This is all being done with the help of validators. Validators are used when we need to check the same
      * thing after several different actions.
      */
@@ -106,7 +106,7 @@ public class Homepage extends AbstractHtmlPageAction
         NavBarValidator.getInstance().validate(page);
 
         // Get the homepage intro quote.
-        final HtmlElement introElement = page.getHtmlElementById("colorlib-intro");
+        final HtmlElement introElement = page.getHtmlElementById("intro-text-homepage");
         Assert.assertNotNull("Intro quote not found", introElement);
 
         // Get the content form the element.

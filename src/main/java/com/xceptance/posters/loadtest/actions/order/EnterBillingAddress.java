@@ -70,10 +70,10 @@ public class EnterBillingAddress extends AbstractHtmlPageAction
         billingAddressForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formAddBillAddr");
 
         // Check that the button to submit the billing address is available.
-        Assert.assertTrue("Button to submit billing address not found.", HtmlPageUtils.isElementPresent(page, "id('btnAddBillAddr')"));
+        Assert.assertTrue("Button to submit billing address not found.", HtmlPageUtils.isElementPresent(page, "id('button-add-billing-address')"));
 
         // Remember the button to submit the billing address.
-        submitAddressButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnAddBillAddr");
+        submitAddressButton = HtmlPageUtils.findSingleHtmlElementByID(page, "button-add-billing-address");
     }
 
     @Override

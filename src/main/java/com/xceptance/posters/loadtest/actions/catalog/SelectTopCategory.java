@@ -38,7 +38,7 @@ public class SelectTopCategory extends AbstractHtmlPageAction
     {
         // Get all top category links and select one randomly.
         topCategoryLink = HtmlPageUtils.findHtmlElementsAndPickOne(getPreviousAction().getHtmlPage(),
-                                                                   "id('categoryMenu')//a[@class='topCategoryMenuItem']");
+                "id('header-categories')/li[@class='nav-item dropdown']/a[@class='nav-link dropdown-toggle']");
     }
 
     @Override
@@ -72,7 +72,7 @@ public class SelectTopCategory extends AbstractHtmlPageAction
         // requirements to be a valid page from our demo poster store.
 
         // Run more page specific tests now.
-        // Check that we arrived on a category page.
+        // Check that we arrived at a category page.
 
         // Check for the header.
         HeaderValidator.getInstance().validate(page);
@@ -80,10 +80,10 @@ public class SelectTopCategory extends AbstractHtmlPageAction
         // Check the side navigation.
         NavBarValidator.getInstance().validate(page);
 
-        // The product over view element is present...
+        // The product overview element is present...
         Assert.assertTrue("Product over view element not present.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//div[@class='thumbnail']']");
+        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']']");
     }
 }
