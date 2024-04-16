@@ -76,7 +76,7 @@ public class GoToSignIn extends AbstractHtmlPageAction
         HeaderValidator.getInstance().validate(page);
 
         // Check that it's the sign-in page.
-        Assert.assertTrue("Sign-in form not found.", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
-        Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
+        Assert.assertTrue("Sign-in form not found.", HtmlPageUtils.isElementPresent(page, "id('form-login')"));
+        Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('link-register')"));
     }
 }

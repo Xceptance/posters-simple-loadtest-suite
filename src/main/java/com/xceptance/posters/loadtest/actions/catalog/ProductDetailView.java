@@ -41,13 +41,13 @@ public class ProductDetailView extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action", page);
 
         // Check the current page is a product overview category page...
-        Assert.assertTrue("Product Overview element missing.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
+        Assert.assertTrue("Product Overview element missing.", HtmlPageUtils.isElementPresent(page, "id('product-overview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']");
+        HtmlPageUtils.findHtmlElements(page, "id('product-overview')//img[@class='card-img-top']");
 
         // Remember a random product's link URL.
-        productDetailLink = HtmlPageUtils.findHtmlElementsAndPickOne(page, "id('productOverview')//div[@class='card-body']/a");
+        productDetailLink = HtmlPageUtils.findHtmlElementsAndPickOne(page, "id('product-overview')//div[@class='card-body']/a");
         Assert.assertNotNull("No matching product detail link found.", productDetailLink);
     }
 
@@ -95,6 +95,6 @@ public class ProductDetailView extends AbstractHtmlPageAction
                           HtmlPageUtils.isElementPresent(page, "id('product-detail-form-size-selection')"));
 
         // 'Add to cart' button is available.
-        Assert.assertTrue("'Add to cart' button is not available", HtmlPageUtils.isElementPresent(page, "id('btnAddToCart')"));
+        Assert.assertTrue("'Add to cart' button is not available", HtmlPageUtils.isElementPresent(page, "id('btn-add-to-cart')"));
     }
 }
