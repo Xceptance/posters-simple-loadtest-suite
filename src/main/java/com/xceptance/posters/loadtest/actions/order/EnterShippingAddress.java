@@ -43,8 +43,8 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
      * Constructor that takes an account object to provide a shipping address
      * 
      * @param previousAction The previously performed action.
-     * @param account The account to get a first name and last name.
-     * @param address The address used in the shipping form.
+     * @param account        The account to get a first name and last name.
+     * @param address        The address used in the shipping form.
      */
     public EnterShippingAddress(final AbstractHtmlPageAction previousAction, final Account account, final Address address)
     {
@@ -57,8 +57,8 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
      * Constructor that takes an address object to provide a shipping address
      * 
      * @param previousAction The previously performed action.
-     * @param timerName The action name.
-     * @param address The address to be used in the shipping form.
+     * @param timerName      The action name.
+     * @param address        The address to be used in the shipping form.
      */
     public EnterShippingAddress(final AbstractHtmlPageAction previousAction, final String timerName, final Address address)
     {
@@ -75,10 +75,10 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the form to enter a new shipping address is available.
-        Assert.assertTrue("Form to enter shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('formAddDelAddr')"));
+        Assert.assertTrue("Form to enter shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('form-add-del-addr')"));
 
         // Remember the shipping address form.
-        shippingAddressForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formAddDelAddr");
+        shippingAddressForm = HtmlPageUtils.findSingleHtmlElementByID(page, "form-add-del-addr");
 
         // Check that the button to submit the shipping address is available.
         Assert.assertTrue("Button to submit shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('button-add-shipping-address')"));
@@ -91,7 +91,8 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
     protected void execute() throws Exception
     {
         // Fill in the shipping address.
-        HtmlPageUtils.setInputValue(shippingAddressForm, "fullName", account.getFirstName() + " " + account.getLastName());
+        HtmlPageUtils.setInputValue(shippingAddressForm, "lastName", account.getLastName());
+        HtmlPageUtils.setInputValue(shippingAddressForm, "firstName", account.getFirstName());
         HtmlPageUtils.setInputValue(shippingAddressForm, "company", address.getCompany());
         HtmlPageUtils.setInputValue(shippingAddressForm, "addressLine", address.getAddressLine());
         HtmlPageUtils.setInputValue(shippingAddressForm, "city", address.getCity());
@@ -110,7 +111,8 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
         // Get the result of the action.
         final HtmlPage page = getHtmlPage();
 
-        // Basic checks - see action 'Homepage' for some more details how and when to use these validators.
+        // Basic checks - see action 'Homepage' for some more details how and when to
+        // use these validators.
         HttpResponseCodeValidator.getInstance().validate(page);
         ContentLengthValidator.getInstance().validate(page);
         HtmlEndTagValidator.getInstance().validate(page);
@@ -118,7 +120,7 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
         CheckoutHeaderValidator.getInstance().validate(page);
 
         // Check that it's the page to enter or select a billing address.
-        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('titleBillAddr')"));
+        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('title-bill-addr')"));
 
         // Check that the form to enter a new billing address is available.
         Assert.assertTrue("Form to enter billing address not found.", HtmlPageUtils.isElementPresent(page, "id('formAddBillAddr')"));

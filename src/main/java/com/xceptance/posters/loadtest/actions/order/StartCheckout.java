@@ -26,8 +26,7 @@ public class StartCheckout extends AbstractHtmlPageAction
     /**
      * Constructor
      * 
-     * @param previousAction
-     *            The previously performed action
+     * @param previousAction The previously performed action
      */
     public StartCheckout(final AbstractHtmlPageAction previousAction)
     {
@@ -40,27 +39,27 @@ public class StartCheckout extends AbstractHtmlPageAction
         // Get the result of the previous action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
-        
-        //The item quantity in mini cart selector 
-        final String itemQuantity = "#mini-cart-menu .cartMiniProductCounter .value";
-        
-        //List of all occurrences for the selector
+
+        // The item quantity in mini cart selector
+        final String itemQuantity = "#mini-cart-menu .cart-mini-product-counter .value";
+
+        // List of all occurrences for the selector
         final DomNodeList<DomNode> foundElements = page.querySelectorAll(itemQuantity);
-        
-        //Making sure that there is exactly one occurrence for our specified selector
+
+        // Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + itemQuantity + " -", 1, foundElements.size());
-        
+
         final HtmlElement cartItemQuantity = (HtmlElement) foundElements.get(0);
-        
+
         // Check that the cart is not empty.
         final boolean cartIsEmpty = cartItemQuantity.asNormalizedText().matches(".*: 0.*");
         Assert.assertFalse("Cart must not be empty for checkout.", cartIsEmpty);
 
         // Check that the checkout link is available.
-        Assert.assertTrue("Checkout link not found.", HtmlPageUtils.isElementPresent(page, "id('btnStartCheckout')"));
+        Assert.assertTrue("Checkout link not found.", HtmlPageUtils.isElementPresent(page, "id('btn-start-checkout')"));
 
         // Remember the checkout link.
-        checkoutLink = HtmlPageUtils.findSingleHtmlElementByID(page, "btnStartCheckout");
+        checkoutLink = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-start-checkout");
     }
 
     @Override
@@ -76,7 +75,8 @@ public class StartCheckout extends AbstractHtmlPageAction
         // Get the result of the action
         final HtmlPage page = getHtmlPage();
 
-        // Basic checks - see action 'Homepage' for some more details how and when to use these validators.
+        // Basic checks - see action 'Homepage' for some more details how and when to
+        // use these validators.
         HttpResponseCodeValidator.getInstance().validate(page);
         ContentLengthValidator.getInstance().validate(page);
         HtmlEndTagValidator.getInstance().validate(page);
@@ -84,9 +84,9 @@ public class StartCheckout extends AbstractHtmlPageAction
         CheckoutHeaderValidator.getInstance().validate(page);
 
         // Check that it's the page to enter or select a shipping address.
-        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('titleDelAddr')"));
+        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('title-del-addr')"));
 
         // Check that the form to enter a new shipping address is available.
-        Assert.assertTrue("Form to enter shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('formAddDelAddr')"));
+        Assert.assertTrue("Form to enter shipping address not found.", HtmlPageUtils.isElementPresent(page, "id('form-add-del-addr')"));
     }
 }
