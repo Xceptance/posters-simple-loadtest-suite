@@ -123,6 +123,6 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
         Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('title-bill-addr')"));
 
         // Check that the form to enter a new billing address is available.
-        Assert.assertTrue("Form to enter billing address not found.", HtmlPageUtils.isElementPresent(page, "id('formAddBillAddr')"));
+        Assert.assertTrue("Form to enter billing address not found.", HtmlPageUtils.isElementPresent(page, "id('form-add-bill-addr')"));
     }
 }

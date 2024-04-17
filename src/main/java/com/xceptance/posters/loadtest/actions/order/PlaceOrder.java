@@ -40,10 +40,10 @@ public class PlaceOrder extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the place order button is available.
-        Assert.assertTrue("Place order button not found.", HtmlPageUtils.isElementPresent(page, "id('btnOrder')"));
+        Assert.assertTrue("Place order button not found.", HtmlPageUtils.isElementPresent(page, "id('btn-order')"));
 
         // Remember the place order button.
-        placeOrderButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnOrder");
+        placeOrderButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-order");
     }
 
     @Override

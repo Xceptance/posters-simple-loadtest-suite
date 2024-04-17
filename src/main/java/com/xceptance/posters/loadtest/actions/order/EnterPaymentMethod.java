@@ -55,16 +55,16 @@ public class EnterPaymentMethod extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the form to enter a new credit card is available.
-        Assert.assertTrue("Form to enter credit card not found.", HtmlPageUtils.isElementPresent(page, "id('formAddPayment')"));
+        Assert.assertTrue("Form to enter credit card not found.", HtmlPageUtils.isElementPresent(page, "id('form-add-payment')"));
 
         // Remember the payment form.
-        paymentForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formAddPayment");
+        paymentForm = HtmlPageUtils.findSingleHtmlElementByID(page, "form-add-payment");
 
         // Check that the button to submit the payment method is available.
-        Assert.assertTrue("Button to submit payment method not found.", HtmlPageUtils.isElementPresent(page, "id('btnAddPayment')"));
+        Assert.assertTrue("Button to submit payment method not found.", HtmlPageUtils.isElementPresent(page, "id('btn-add-payment')"));
 
         // Remember the button to submit the payment method.
-        submitPaymentMethod = HtmlPageUtils.findSingleHtmlElementByID(page, "btnAddPayment");
+        submitPaymentMethod = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-add-payment");
     }
 
     @Override
@@ -94,6 +94,6 @@ public class EnterPaymentMethod extends AbstractHtmlPageAction
         CheckoutHeaderValidator.getInstance().validate(page);
 
         // Check that it's the order overview page.
-        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('titleOrderOverview')"));
+        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('title-order-overview')"));
     }
 }
