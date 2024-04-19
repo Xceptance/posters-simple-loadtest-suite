@@ -7,7 +7,6 @@ import org.htmlunit.html.HtmlForm;
 import org.htmlunit.html.HtmlPage;
 import org.junit.Assert;
 
-
 import com.xceptance.posters.loadtest.util.Account;
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
@@ -84,8 +83,6 @@ public class Login extends AbstractHtmlPageAction
         loadPageByClick(signInButton);
     }
     
-   
-    
     @Override
     protected void postValidate() throws Exception
     {
@@ -123,23 +120,10 @@ public class Login extends AbstractHtmlPageAction
         // Get the result of the action.
         final HtmlPage page = getHtmlPage();
         
-
-        // Print out the URL of the page.
-        System.out.println("Cuuurrent page URL: " + page.getUrl().toString());
-
-
         // Find the header brand element.
         final HtmlElement headerBrand = page.getFirstByXPath("//a[@id='header-brand']");
 
         // Click on the header brand to navigate to the homepage.
         loadPageByClick(headerBrand);
-        
-
-        // Print out the URL of the page.
-        System.out.println("Cuuurrent page URL: " + page.getUrl().toString());
-
-    }
-
-
-   
+    }   
 }

@@ -24,7 +24,8 @@ public class ViewCart extends AbstractHtmlPageAction
     /**
      * Constructor
      * 
-     * @param previousAction The previously performed action
+     * @param previousAction 
+     * The previously performed action
      */
     public ViewCart(final AbstractHtmlPageAction previousAction)
     {
@@ -38,9 +39,6 @@ public class ViewCart extends AbstractHtmlPageAction
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
-        // Check if the mini cart menu is present
-        if (HtmlPageUtils.isElementPresent(page, "id('mini-cart-menu')"))
-        {
             // Check if the cart overview link is available.
             if (HtmlPageUtils.isElementPresent(page, "id('mini-cart-menu')//div[@class='link-button']/a"))
             {
@@ -51,13 +49,8 @@ public class ViewCart extends AbstractHtmlPageAction
             {
                 // Set viewCartLink to null to indicate that it is not available
                 viewCartLink = null;
+                Assert.assertNotNull("No viewCartLink available.", viewCartLink);
             }
-        }
-        else
-        {
-            // Set viewCartLink to null to indicate that it is not available
-            viewCartLink = null;
-        }
     }
 
     @Override
@@ -73,10 +66,6 @@ public class ViewCart extends AbstractHtmlPageAction
     @Override
     protected void postValidate() throws Exception
     {
-        // If viewCartLink is null, it means the mini cart menu is not present, so we
-        // skip validation
-        if (viewCartLink != null)
-        {
             // Get the result of the action.
             final HtmlPage page = getHtmlPage();
 
@@ -92,6 +81,5 @@ public class ViewCart extends AbstractHtmlPageAction
             Assert.assertTrue("Title not found", HtmlPageUtils.isElementPresent(page, "id('cart-title')"));
             Assert.assertTrue("Total price not found", HtmlPageUtils.isElementPresent(page, "id('order-sub-total-value')"));
             Assert.assertTrue("Checkout button not found", HtmlPageUtils.isElementPresent(page, "id('btn-start-checkout')"));
-        }
     }
 }

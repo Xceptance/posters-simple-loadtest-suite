@@ -11,6 +11,7 @@ import com.xceptance.posters.loadtest.actions.account.GoToRegistrationForm;
 import com.xceptance.posters.loadtest.actions.account.GoToSignIn;
 import com.xceptance.posters.loadtest.actions.account.Login;
 import com.xceptance.posters.loadtest.actions.account.Logout;
+import com.xceptance.posters.loadtest.actions.account.NavigateToHomepage;
 import com.xceptance.posters.loadtest.actions.account.Register;
 import com.xceptance.posters.loadtest.actions.order.PlaceOrder;
 import com.xceptance.posters.loadtest.actions.order.ViewCart;
@@ -88,6 +89,11 @@ public class TOrder extends AbstractTestCase
         final Login login = new Login(previousAction, account);
         login.run();
         previousAction = login;
+        
+        //navigate to homepage
+        final NavigateToHomepage navigateToHomepage = new NavigateToHomepage(previousAction);
+        navigateToHomepage.run();
+        previousAction =login;
 
         // select randomly the number of products to browse
         final int numberOfProducts = XltRandom.nextInt(productsMin, productsMax);

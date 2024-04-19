@@ -26,7 +26,8 @@ public class StartCheckout extends AbstractHtmlPageAction
     /**
      * Constructor
      * 
-     * @param previousAction The previously performed action
+     * @param previousAction 
+     * The previously performed action
      */
     public StartCheckout(final AbstractHtmlPageAction previousAction)
     {
@@ -75,8 +76,7 @@ public class StartCheckout extends AbstractHtmlPageAction
         // Get the result of the action
         final HtmlPage page = getHtmlPage();
 
-        // Basic checks - see action 'Homepage' for some more details how and when to
-        // use these validators.
+        // Basic checks - see action 'Homepage' for some more details how and when to use these validators.
         HttpResponseCodeValidator.getInstance().validate(page);
         ContentLengthValidator.getInstance().validate(page);
         HtmlEndTagValidator.getInstance().validate(page);

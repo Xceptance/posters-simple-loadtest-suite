@@ -43,8 +43,8 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
      * Constructor that takes an account object to provide a shipping address
      * 
      * @param previousAction The previously performed action.
-     * @param account        The account to get a first name and last name.
-     * @param address        The address used in the shipping form.
+     * @param account The account to get a first name and last name.
+     * @param address The address used in the shipping form.
      */
     public EnterShippingAddress(final AbstractHtmlPageAction previousAction, final Account account, final Address address)
     {
@@ -57,8 +57,8 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
      * Constructor that takes an address object to provide a shipping address
      * 
      * @param previousAction The previously performed action.
-     * @param timerName      The action name.
-     * @param address        The address to be used in the shipping form.
+     * @param timerName The action name.
+     * @param address The address to be used in the shipping form.
      */
     public EnterShippingAddress(final AbstractHtmlPageAction previousAction, final String timerName, final Address address)
     {
@@ -111,8 +111,7 @@ public class EnterShippingAddress extends AbstractHtmlPageAction
         // Get the result of the action.
         final HtmlPage page = getHtmlPage();
 
-        // Basic checks - see action 'Homepage' for some more details how and when to
-        // use these validators.
+        // Basic checks - see action 'Homepage' for some more details how and when to use these validators.
         HttpResponseCodeValidator.getInstance().validate(page);
         ContentLengthValidator.getInstance().validate(page);
         HtmlEndTagValidator.getInstance().validate(page);
