@@ -110,20 +110,5 @@ public class Login extends AbstractHtmlPageAction
 
         // Check the title.
         Assert.assertEquals("User page title not found", "My Account", blogNameElement.asNormalizedText());
-        
-        // After validating the user page, navigate back to the homepage.
-        navigateToHomepage();
     }
-
-    private void navigateToHomepage() throws Exception
-    {
-        // Get the result of the action.
-        final HtmlPage page = getHtmlPage();
-        
-        // Find the header brand element.
-        final HtmlElement headerBrand = page.getFirstByXPath("//a[@id='header-brand']");
-
-        // Click on the header brand to navigate to the homepage.
-        loadPageByClick(headerBrand);
-    }   
 }

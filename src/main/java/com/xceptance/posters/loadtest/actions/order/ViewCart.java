@@ -38,19 +38,8 @@ public class ViewCart extends AbstractHtmlPageAction
         // Get the result of the previous action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
-
-            // Check if the cart overview link is available.
-            if (HtmlPageUtils.isElementPresent(page, "id('mini-cart-menu')//div[@class='link-button']/a"))
-            {
-                // Remember cart overview link.
-                viewCartLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('mini-cart-menu')//div[@class='link-button']/a");
-            }
-            else
-            {
-                // Set viewCartLink to null to indicate that it is not available
-                viewCartLink = null;
-                Assert.assertNotNull("No viewCartLink available.", viewCartLink);
-            }
+        // Remember viewCartLink
+        viewCartLink = HtmlPageUtils.findSingleHtmlElementByXPath(page, "id('mini-cart-menu')//div[@class='link-button']/a");
     }
 
     @Override
