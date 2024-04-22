@@ -45,11 +45,8 @@ public class ViewCart extends AbstractHtmlPageAction
     @Override
     protected void execute() throws Exception
     {
-        // Load the cart overview page if viewCartLink is available
-        if (viewCartLink != null)
-        {
+        // Load the cart overview page 
             loadPageByClick(viewCartLink);
-        }
     }
 
     @Override
