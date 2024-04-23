@@ -64,23 +64,24 @@ public class EnterBillingAddress extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the form to enter a new billing address is available.
-        Assert.assertTrue("Form to enter billing address not found.", HtmlPageUtils.isElementPresent(page, "id('formAddBillAddr')"));
+        Assert.assertTrue("Form to enter billing address not found.", HtmlPageUtils.isElementPresent(page, "id('form-add-bill-addr')"));
 
         // Remember the billing address form.
-        billingAddressForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formAddBillAddr");
+        billingAddressForm = HtmlPageUtils.findSingleHtmlElementByID(page, "form-add-bill-addr");
 
         // Check that the button to submit the billing address is available.
-        Assert.assertTrue("Button to submit billing address not found.", HtmlPageUtils.isElementPresent(page, "id('button-add-billing-address')"));
+        Assert.assertTrue("Button to submit billing address not found.", HtmlPageUtils.isElementPresent(page, "id('btn-add-bill-addr')"));
 
         // Remember the button to submit the billing address.
-        submitAddressButton = HtmlPageUtils.findSingleHtmlElementByID(page, "button-add-billing-address");
+        submitAddressButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-add-bill-addr");
     }
 
     @Override
     protected void execute() throws Exception
     {
         // Fill in the billing address.
-        HtmlPageUtils.setInputValue(billingAddressForm, "fullName", account.getFirstName() + " " + account.getLastName());
+        HtmlPageUtils.setInputValue(billingAddressForm, "firstName", account.getFirstName()); 
+        HtmlPageUtils.setInputValue(billingAddressForm, "lastName", account.getLastName());
         HtmlPageUtils.setInputValue(billingAddressForm, "company", address.getCompany());
         HtmlPageUtils.setInputValue(billingAddressForm, "addressLine", address.getAddressLine());
         HtmlPageUtils.setInputValue(billingAddressForm, "city", address.getCity());
@@ -105,9 +106,9 @@ public class EnterBillingAddress extends AbstractHtmlPageAction
         CheckoutHeaderValidator.getInstance().validate(page);
 
         // Check that the resulting page is the payment page.
-        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('titlePayment')"));
+        Assert.assertTrue("Title not found.", HtmlPageUtils.isElementPresent(page, "id('title-payment')"));
 
         // Check that the form to enter a new payment method is available.
-        Assert.assertTrue("Form to enter payment method not found.", HtmlPageUtils.isElementPresent(page, "id('formAddPayment')"));
+        Assert.assertTrue("Form to enter payment method not found.", HtmlPageUtils.isElementPresent(page, "id('form-add-payment')"));
     }
 }

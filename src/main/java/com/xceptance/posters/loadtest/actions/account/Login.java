@@ -30,7 +30,7 @@ public class Login extends AbstractHtmlPageAction
      * The button to submit the sign-in form.
      */
     private HtmlElement signInButton;
-
+    
     /**
      * The account to log in.
      */
@@ -58,16 +58,18 @@ public class Login extends AbstractHtmlPageAction
         Assert.assertNotNull("Failed to get page from previous action.", page);
 
         // Check that the sign-in form is available.
-        Assert.assertTrue("Sign-in form not found", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
+        Assert.assertTrue("Sign-in form not found", HtmlPageUtils.isElementPresent(page, "id('form-login')"));
 
         // Remember the sign-in form.
-        signInForm = HtmlPageUtils.findSingleHtmlElementByID(page, "formLogin");
+        signInForm = HtmlPageUtils.findSingleHtmlElementByID(page, "form-login");
 
         // Check that the sign-in button is available.
-        Assert.assertTrue("Sign-in button not found", HtmlPageUtils.isElementPresent(page, "id('btnSignIn')"));
+        Assert.assertTrue("Sign-in button not found", HtmlPageUtils.isElementPresent(page, "id('btn-sign-in')"));
 
         // Remember the sign-in button.
-        signInButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btnSignIn");
+        signInButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-sign-in");
+        
+        HtmlPageUtils.findSingleHtmlElementByID(page, "header-brand");
     }
 
     @Override
@@ -80,7 +82,7 @@ public class Login extends AbstractHtmlPageAction
         // Submit the registration form.
         loadPageByClick(signInButton);
     }
-
+    
     @Override
     protected void postValidate() throws Exception
     {
@@ -93,7 +95,7 @@ public class Login extends AbstractHtmlPageAction
         HtmlEndTagValidator.getInstance().validate(page);
 
         HeaderValidator.getInstance().validate(page);
-
+        
         final String accountButtonSelector = "#go-to-account-overview";
 
         //List of all occurrences for the selector
@@ -102,11 +104,11 @@ public class Login extends AbstractHtmlPageAction
         //Making sure that there is exactly one occurrence for our specified selector
         Assert.assertEquals("No or too many elements found for Selector: " + accountButtonSelector + " -", 1, foundElements.size());
 
-        // Check that it's the homepage by looking for the Intro Quote.
-        final HtmlElement blogNameElement = page.getHtmlElementById("intro-text-homepage");
+        // Check that it's the user page by looking for the title.
+        final HtmlElement blogNameElement = page.getHtmlElementById("title-account-overview");
         Assert.assertNotNull("Quote not found", blogNameElement);
 
-        // Check the quote.
-        Assert.assertEquals("Quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", blogNameElement.asNormalizedText());
+        // Check the title.
+        Assert.assertEquals("User page title not found", "My Account", blogNameElement.asNormalizedText());
     }
 }

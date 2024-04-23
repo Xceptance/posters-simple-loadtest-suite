@@ -75,7 +75,7 @@ public class AddToCart extends AbstractHtmlPageAction
         // Assert the presence of the add to cart button (even though we do not use
         // it here since we're just simulating the AJAX calls that are normally
         // triggered by JavaScript after hitting the button).
-        Assert.assertTrue("AddToCart button is not present.", HtmlPageUtils.isElementPresent(page, "id('btnAddToCart')"));
+        Assert.assertTrue("AddToCart button is not present.", HtmlPageUtils.isElementPresent(page, "id('btn-add-to-cart')"));
     }
 
     @Override

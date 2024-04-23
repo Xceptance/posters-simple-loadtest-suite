@@ -81,9 +81,9 @@ public class SelectTopCategory extends AbstractHtmlPageAction
         NavBarValidator.getInstance().validate(page);
 
         // The product overview element is present...
-        Assert.assertTrue("Product over view element not present.", HtmlPageUtils.isElementPresent(page, "id('productOverview')"));
+        Assert.assertTrue("Product over view element not present.", HtmlPageUtils.isElementPresent(page, "id('product-overview')"));
 
         // ...and we also see some poster's thumbnail images.
-        HtmlPageUtils.findHtmlElements(page, "id('productOverview')//img[@class='card-img-top']']");
+        HtmlPageUtils.findHtmlElements(page, "id('product-overview')//img[@class='card-img-top']']");
     }
 }

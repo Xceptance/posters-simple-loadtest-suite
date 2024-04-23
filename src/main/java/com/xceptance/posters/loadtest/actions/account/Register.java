@@ -102,8 +102,8 @@ public class Register extends AbstractHtmlPageAction
         Assert.assertTrue("Registration failed.", isAccountCreated);
 
         // Check that it's the sign-in page.
-        Assert.assertTrue("Sign in form not found.", HtmlPageUtils.isElementPresent(page, "id('formLogin')"));
-        Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('linkRegister')"));
+        Assert.assertTrue("Sign in form not found.", HtmlPageUtils.isElementPresent(page, "id('form-login')"));
+        Assert.assertTrue("Link to register not found.", HtmlPageUtils.isElementPresent(page, "id('link-register')"));
         
         //The log in selector 
         final String logInButtonSelector = "#header-customer-menus #go-to-login";

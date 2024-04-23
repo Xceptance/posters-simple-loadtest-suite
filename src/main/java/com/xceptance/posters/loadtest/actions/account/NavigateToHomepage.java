@@ -1,4 +1,4 @@
-package com.xceptance.posters.loadtest.actions.order;
+package com.xceptance.posters.loadtest.actions.account;
 
 import org.htmlunit.html.HtmlElement;
 import org.htmlunit.html.HtmlPage;
@@ -6,20 +6,19 @@ import org.junit.Assert;
 
 import com.xceptance.posters.loadtest.validators.HeaderValidator;
 import com.xceptance.xlt.api.actions.AbstractHtmlPageAction;
-import com.xceptance.xlt.api.util.HtmlPageUtils;
 import com.xceptance.xlt.api.validators.ContentLengthValidator;
 import com.xceptance.xlt.api.validators.HtmlEndTagValidator;
 import com.xceptance.xlt.api.validators.HttpResponseCodeValidator;
 
 /**
- * Places the order.
+ * Go to the Homepage
  */
-public class PlaceOrder extends AbstractHtmlPageAction
-{
+
+public class NavigateToHomepage extends AbstractHtmlPageAction {
     /**
-     * Place order button.
+     * The header-brand-logo
      */
-    private HtmlElement placeOrderButton;
+    private HtmlElement headerBrand;
 
     /**
      * Constructor.
@@ -27,7 +26,7 @@ public class PlaceOrder extends AbstractHtmlPageAction
      * @param previousAction
      *            The previously performed action
      */
-    public PlaceOrder(final AbstractHtmlPageAction previousAction)
+    public NavigateToHomepage(final AbstractHtmlPageAction previousAction)
     {
         super(previousAction, null);
     }
@@ -38,19 +37,17 @@ public class PlaceOrder extends AbstractHtmlPageAction
         // Get the result of the previous action.
         final HtmlPage page = getPreviousAction().getHtmlPage();
         Assert.assertNotNull("Failed to get page from previous action.", page);
-
-        // Check that the place order button is available.
-        Assert.assertTrue("Place order button not found.", HtmlPageUtils.isElementPresent(page, "id('btn-order')"));
-
-        // Remember the place order button.
-        placeOrderButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-order");
+       
+        // Remember the header-brand-logo.
+        headerBrand = page.getHtmlElementById("header-brand-logo");
+       
     }
 
     @Override
     protected void execute() throws Exception
     {
-        // Click the place order button.
-        loadPageByClick(placeOrderButton);
+        // Click the logo to load the homepage.
+        loadPageByClick(headerBrand);
     }
 
     @Override
@@ -59,15 +56,21 @@ public class PlaceOrder extends AbstractHtmlPageAction
         // Get the result of the action.
         final HtmlPage page = getHtmlPage();
 
-        // Basic checks - see action 'Homepage' for some more details how and when to use these validators.
+        // Repeated basic checks - see action 'Homepage' for some more details how and when to use these validators.
         HttpResponseCodeValidator.getInstance().validate(page);
         ContentLengthValidator.getInstance().validate(page);
         HtmlEndTagValidator.getInstance().validate(page);
 
         HeaderValidator.getInstance().validate(page);
 
-        // Check that the order was successfully placed.
-        final boolean successfulOrder = page.asXml().contains("Thank you for shopping with us!");
-        Assert.assertTrue("Placing order failed.", successfulOrder);
+        // Get the homepage intro quote.
+        final HtmlElement introElement = page.getHtmlElementById("intro-text-homepage");
+        Assert.assertNotNull("Intro quote not found", introElement);
+
+        // Get the content form the element.
+        final String text = introElement.asNormalizedText();
+
+        // Make sure we have the correct intro quote.
+        Assert.assertEquals("Intro quote does not match", "Began with a simple idea \"SHATATATATA!\" - M. Scott", text);
     }
 }

@@ -24,15 +24,15 @@ public class HeaderValidator
     {
         // Validate presence of some basic elements in the header:
         // The brand logo
-        Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "//img[@class ='shopLogo']"));
+        Assert.assertTrue("Brand not found.", HtmlPageUtils.isElementPresent(page, "//img[@class ='shop-logo']"));
         // The search form
         Assert.assertTrue("Search form not found.", HtmlPageUtils.isElementPresent(page, "id('header-search-form')"));
         // The search input
-        Assert.assertTrue("Search input field not found.", HtmlPageUtils.isElementPresent(page, "id('s')"));
+        Assert.assertTrue("Search input field not found.", HtmlPageUtils.isElementPresent(page, "id('header-search-text')"));
         // The search button
         Assert.assertTrue("Search button not found.", HtmlPageUtils.isElementPresent(page, "id('header-search-button')"));
         // The cart overview
-        Assert.assertTrue("Cart overview in header not found.", HtmlPageUtils.isElementPresent(page, "id('headerCartOverview')"));
+        Assert.assertTrue("Cart overview in header not found.", HtmlPageUtils.isElementPresent(page, "id('header-cart-overview')"));
     }
 
     /**
