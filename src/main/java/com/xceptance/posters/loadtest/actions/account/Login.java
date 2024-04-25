@@ -68,8 +68,6 @@ public class Login extends AbstractHtmlPageAction
 
         // Remember the sign-in button.
         signInButton = HtmlPageUtils.findSingleHtmlElementByID(page, "btn-sign-in");
-        
-        HtmlPageUtils.findSingleHtmlElementByID(page, "header-brand");
     }
 
     @Override
