@@ -46,26 +46,26 @@ public class ViewCart extends AbstractHtmlPageAction
     protected void execute() throws Exception
     {
         // Load the cart overview page 
-            loadPageByClick(viewCartLink);
+        loadPageByClick(viewCartLink);
     }
 
     @Override
     protected void postValidate() throws Exception
     {
-            // Get the result of the action.
-            final HtmlPage page = getHtmlPage();
+       // Get the result of the action.
+       final HtmlPage page = getHtmlPage();
 
-            // Basic checks - see action 'Homepage' for some more details how and when to
-            // use these validators.
-            HttpResponseCodeValidator.getInstance().validate(page);
-            ContentLengthValidator.getInstance().validate(page);
-            HtmlEndTagValidator.getInstance().validate(page);
+       // Basic checks - see action 'Homepage' for some more details how and when to
+       // use these validators.
+       HttpResponseCodeValidator.getInstance().validate(page);
+       ContentLengthValidator.getInstance().validate(page);
+       HtmlEndTagValidator.getInstance().validate(page);
 
-            HeaderValidator.getInstance().validate(page);
+       HeaderValidator.getInstance().validate(page);
 
-            // Check that it's the cart overview page.
-            Assert.assertTrue("Title not found", HtmlPageUtils.isElementPresent(page, "id('cart-title')"));
-            Assert.assertTrue("Total price not found", HtmlPageUtils.isElementPresent(page, "id('order-sub-total-value')"));
-            Assert.assertTrue("Checkout button not found", HtmlPageUtils.isElementPresent(page, "id('btn-start-checkout')"));
+       // Check that it's the cart overview page.
+       Assert.assertTrue("Title not found", HtmlPageUtils.isElementPresent(page, "id('cart-title')"));
+       Assert.assertTrue("Total price not found", HtmlPageUtils.isElementPresent(page, "id('order-sub-total-value')"));
+       Assert.assertTrue("Checkout button not found", HtmlPageUtils.isElementPresent(page, "id('btn-start-checkout')"));
     }
 }
