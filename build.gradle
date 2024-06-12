@@ -9,9 +9,6 @@ plugins {
 
 repositories {
     mavenLocal()
-    maven {
-        url = uri('https://lab.xceptance.de/nexus/content/groups/public')
-    }
 
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
@@ -23,7 +20,7 @@ configurations {
 }
 
 dependencies {
-    provided 'com.xceptance:xlt:5.7.0'
+    provided 'com.xceptance:xlt:8.2.0'
 }
 
 group = 'com.xceptance'
