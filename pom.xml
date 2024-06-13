@@ -73,6 +73,20 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <!-- Automatically copy all non-provided dependencies to "target/dependency" when compiling. This ensures that
+                        they are present when the test suite is about to be uploaded to the agent machines. -->
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <excludeScope>provided</excludeScope>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
@@ -82,6 +96,7 @@
             <groupId>com.xceptance</groupId>
             <artifactId>xlt</artifactId>
             <version>8.2.0</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
