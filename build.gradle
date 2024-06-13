@@ -4,12 +4,9 @@
 
 plugins {
     id 'java'
-    id 'maven-publish'
 }
 
 repositories {
-    mavenLocal()
-
     maven {
         url = uri('https://repo.maven.apache.org/maven2/')
     }
@@ -32,14 +29,6 @@ sourceSets {
          // Add dependencies of type 'provided' to compile and runtime classpaths
         compileClasspath += configurations.provided
         runtimeClasspath += configurations.provided
-    }
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
     }
 }
 
