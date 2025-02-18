@@ -204,10 +204,9 @@ public class Paging extends AbstractHtmlPageAction
 
             // (2.3) Create link to product detail page.
             final HtmlElement productLink = HtmlPageUtils.createHtmlElement("a", productTag);
-            final HtmlElement contextPathScriptElement = HtmlPageUtils.findSingleHtmlElementByXPath(page,
-                                                                                                    "html/head/script[@type='text/javascript' and contains(.,'CONTEXT_PATH')]");
-            final String contextPath = RegExUtils.getFirstMatch(contextPathScriptElement.getTextContent(), "CONTEXT_PATH = '(.*)';", 1);
-            productLink.setAttribute("href", contextPath + "/productDetail/" + URLEncoder.encode(product.get("name").toString(), "UTF-8") +
+            final String contextPath = AjaxUtils.getContextPath(page);
+            final String contextLocale = AjaxUtils.getContextLocale(page);
+            productLink.setAttribute("href", contextPath + "/" + contextLocale + "/productDetail/" + URLEncoder.encode(product.get("name").toString(), "UTF-8") +
                                              "?productId=" + product.get("id"));
             // (2.4) Add image tag.
             final HtmlElement imageTag = HtmlPageUtils.createHtmlElement("img", productLink);
