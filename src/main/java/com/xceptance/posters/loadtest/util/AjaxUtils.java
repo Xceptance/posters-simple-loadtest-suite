@@ -34,6 +34,18 @@ public class AjaxUtils
         return contextPath;
     }
     
+    public static String getContextLocale(HtmlPage page)
+    {
+        final List<HtmlElement> scripts = page.getByXPath("/html/head/script[contains(.,'LOCALE')]");
+        Assert.assertFalse("No Locale script found in page", scripts.size()!=1);
+        final String scriptText = scripts.get(0).getTextContent();
+        String contextLocale = RegExUtils.getFirstMatch(scriptText, "LOCALE\\s*=\\s*'([^']+)'", 1);            
+        if(contextLocale==null) {
+            contextLocale="";
+        }
+        return contextLocale;
+    }
+    
     /**
      * Performs an XHR call for the given URL and parameters with method GET.
      * 

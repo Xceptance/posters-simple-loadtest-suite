@@ -94,8 +94,11 @@ public class AddToCart extends AbstractHtmlPageAction
         //Obtain context path
         final String contextPath = AjaxUtils.getContextPath(page);
 
+        //Obtain context path
+        final String contextLocale = AjaxUtils.getContextLocale(page);
+
         // Perform the AJAX call and return the result.
-        final WebResponse updatePriceResponse = AjaxUtils.callPost(page, contextPath + "/updatePrice", updatePriceParams);
+        final WebResponse updatePriceResponse = AjaxUtils.callPost(page, contextPath + "/" + contextLocale + "/updatePrice", updatePriceParams);
 
         
         // Get JSON object from response.
@@ -149,7 +152,7 @@ public class AddToCart extends AbstractHtmlPageAction
         addToCartParams.add(new NameValuePair("size", size));
         
         // Perform the AJAX call and return the result.
-        final WebResponse addToCartResponse = AjaxUtils.callGet(page, contextPath + "/addToCartSlider", addToCartParams);
+        final WebResponse addToCartResponse = AjaxUtils.callGet(page, contextPath + "/" + contextLocale + "/addToCartSlider", addToCartParams);
 
         // Get JSON object from response.
         final JSONObject addToCartJsonResponse = new JSONObject(addToCartResponse.getContentAsString());
