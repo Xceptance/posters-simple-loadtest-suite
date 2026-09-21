@@ -1,16 +1,15 @@
 package com.xceptance.posters.loadtest.util;
 
 import java.net.URL;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import org.apache.http.client.utils.URLEncodedUtils;
 import org.htmlunit.HttpMethod;
 import org.htmlunit.WebRequest;
 import org.htmlunit.WebResponse;
 import org.htmlunit.html.HtmlElement;
 import org.htmlunit.html.HtmlPage;
-import org.htmlunit.httpclient.HttpClientConverter;
+import org.htmlunit.http.HttpUtils;
 import org.htmlunit.util.NameValuePair;
 import org.junit.Assert;
 
@@ -130,12 +129,6 @@ public class AjaxUtils
      */
     public static String paramsToQueryString(final List<NameValuePair> parameters) throws Exception
     {
-        final ArrayList<org.apache.http.NameValuePair> arr = new ArrayList<org.apache.http.NameValuePair>();
-        for (final org.apache.http.NameValuePair nvp : HttpClientConverter.nameValuePairsToHttpClient(parameters))
-        {
-            arr.add(nvp);
-        }
-
-        return URLEncodedUtils.format(arr, "UTF-8");
+    	return HttpUtils.toQueryFormFields(parameters, StandardCharsets.UTF_8);
     }
 }
